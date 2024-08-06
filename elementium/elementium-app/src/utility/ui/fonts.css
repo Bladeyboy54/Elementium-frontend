@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Satoshi";
+  src: url("../../assets/fonts/Satoshi/Satoshi.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Satoshi Italic";
+  src: url("../../assets/fonts/Satoshi/Satoshi-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Spectral ExtraBold";
+  src: url("../../assets/fonts/Spectral/Spectral-ExtraBold.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "Spectral ExtraBold Italic";
+  src: url("../../assets/fonts/Spectral/Spectral-ExtraBoldItalic.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "Spectral Bold";
+  src: url("../../assets/fonts/Spectral/Spectral-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Spectral Bold Italic";
+  src: url("../../assets/fonts/Spectral/Spectral-BoldItalic.ttf")
+    format("truetype");
+}
