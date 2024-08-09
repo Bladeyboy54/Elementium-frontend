@@ -20,14 +20,17 @@ import { OTP } from "../../screens/Onboarding/OTP";
 import { Sidebar } from "../../elements/Sidebar";
 import { useAuth } from "./auth/authProvider";
 import { PrivateRoute, PublicRoute } from "./auth/authRoutes";
+import { Landing } from "../../screens/Onboarding/Landing";
+import GridWrapper from "../ui/Grid/appGrid";
 
 const AppRoutes: React.FC = () => {
   const { isAuthenticated } = useAuth();
 
   return (
     <BrowserRouter>
-      <div>
-        {isAuthenticated && <Sidebar />}
+      {/* <div> */}
+      <GridWrapper sidebar={isAuthenticated && <Sidebar />}>
+        {/* {isAuthenticated && <Sidebar />} */}
         <Routes>
           <Route
             path="/"
@@ -95,6 +98,14 @@ const AppRoutes: React.FC = () => {
             }
           >
             <Route
+              path="landing"
+              element={
+                <PublicRoute>
+                  <Landing />
+                </PublicRoute>
+              }
+            />
+            <Route
               path="create-account"
               element={
                 <PublicRoute>
@@ -121,7 +132,8 @@ const AppRoutes: React.FC = () => {
           </Route>
           <Route path="*" element={<Error404 />} />
         </Routes>
-      </div>
+      </GridWrapper>
+      {/* </div> */}
     </BrowserRouter>
   );
 };

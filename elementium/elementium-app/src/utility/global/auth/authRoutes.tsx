@@ -9,7 +9,7 @@ export const PrivateRoute: React.FC<{ children: ReactNode }> = ({
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
-    return <Navigate to="/onboarding" />;
+    return <Navigate to="/onboarding/landing" />;
   }
 
   return <>{children}</>;
@@ -22,7 +22,7 @@ export const PublicRoute: React.FC<{ children: ReactNode }> = ({
   const { isAuthenticated } = useAuth();
 
   if (isAuthenticated) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/" />;
   }
 
   return <>{children}</>;

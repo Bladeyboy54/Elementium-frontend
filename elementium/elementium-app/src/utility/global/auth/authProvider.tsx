@@ -4,9 +4,14 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 interface AuthContextType {
   isAuthenticated: boolean;
   hasPermission: boolean;
-  login: () => void;
+  login: (userForm: LoginFormType) => void;
   logout: () => void;
   setPermission: (permission: boolean) => void;
+}
+
+interface LoginFormType {
+  email: string;
+  password: string;
 }
 
 // Default values for the context
@@ -28,9 +33,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [hasPermission, setHasPermission] = useState<boolean>(false);
 
-  const login = () => {
+  const login = (userForm: LoginFormType) => {
     // TODO: Implement your login logic here
     setIsAuthenticated(true);
+    sessionStorage.setItem("user", JSON.stringify(userForm));
     // TODO: Permissions based on user role after login
   };
 
