@@ -1,0 +1,14 @@
+.sidebar-wrap {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  gap: 20px;
+  height: 100%;
+}
+
+.sidebar-wrap-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}

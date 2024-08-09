@@ -1,0 +1,78 @@
+.user-info-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #b1b98e;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.user-not-logged-in {
+  cursor: pointer;
+}
+
+.user-info-wrap-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+.user-info-img-wrap {
+  height: 30px;
+  width: 30px;
+  border: 1px solid #1f1f1f;
+  background: #050406;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-info-img {
+  color: #050406;
+  height: 30px;
+  width: 30px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+.user-info-name {
+  color: #050406;
+  font-family: "Spectral-Bold";
+  font-size: 0.9rem;
+  font-weight: 800;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user-info-login {
+  color: #050406;
+  font-family: "Satoshi";
+  font-size: 0.9rem;
+  font-weight: 800;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user-info-options-wrap {
+  /* padding: 10px; */
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7.5px;
+  border: #1b1c15 1px solid;
+}
+
+.user-info-options-logged-in {
+  cursor: pointer;
+}
+
+.user-info-options-logged-in:hover {
+  background: #fff;
+}
