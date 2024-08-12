@@ -22,7 +22,7 @@ const styles = {
   },
   sidebar: {
     borderRight: "1px solid #241F29",
-    maxWidth: "200px",
+    // maxWidth: "200px",
     padding: "20px",
   },
   mainContent: {
