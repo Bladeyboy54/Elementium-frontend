@@ -43,7 +43,6 @@
 }
 
 .info{
-    background-color: gray;
     display: flex;
     width: 100%;
     height: 100%;
@@ -51,16 +50,17 @@
 
 .center-section{
     display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 70%;
     height: 100%;
-    background-color: yellow;
 }
 
 .plaque{
     display: flex;
     align-items: center;
-    width: 90%;
-    height: 32%;
+    width: 97%;
+    height: 25%;
     background-color: #E1DCEA;
     overflow: hidden;
     border-radius: 40px;
@@ -81,6 +81,8 @@
     color: black;
     p{
         font-size: 32px;
+        margin: 0;
+        padding: 0;
     }
 }
 .bold-text{
@@ -88,4 +90,27 @@
 }
 .plaque-date{
     margin-top: -20px;
+}
+
+.atom-img{
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+.recent-transactions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+    width: 100%;
+    height: 10%;
+    background-color: magenta;
+    color: #EDF2D6;
+    font-family: "Spectral", sans-serif;
+
+}
+
+.recent-transactions-block{
+
 }

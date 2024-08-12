@@ -1,0 +1,114 @@
+
+.main{
+    display: flex;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 30%;
+    border-radius: 40px;
+    margin-top: -20px;
+    border: 2px solid #B1B98E;
+
+    .content{
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 70%;
+
+        .info{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 40%;
+            align-items: center;
+
+            .infoSection{
+                display: flex;
+                flex-direction: column;
+                line-height: 1.4;
+                margin-right: 8%;
+
+                p{
+                    margin: 0;
+                    padding: 0;
+                    color: white;
+                }
+                .title{
+                    font-weight: 200;
+                    font-size: 0.8vw;
+                }
+    
+                .value{
+
+                    font-size: 1.5vw;
+                    font-weight: 500;
+                }
+            }
+
+        }
+
+        .actions{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            height: 70%;
+
+            .button{
+                color: #080808;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 25px; 
+                padding-left: 45px;
+                padding-right: 45px;
+                height: 10px;
+                border-radius: 20px;
+                margin-right: 0.8vw;
+
+                transition: all 0.4s ease;
+
+                p{
+                    font-weight: 700;
+                    margin-left: 0.8vw;
+                }
+
+                &:hover{
+                    cursor: pointer;
+                    filter: contrast(4);
+                }
+
+                &:active{
+                    transform: translateY(4px);
+                    filter: saturate(2);
+                }
+
+            }
+
+            .sendButton{
+                background-color: #93D69D;
+            }
+
+            .receiveButton{
+                background-color: #8CD3C6;
+            }
+
+            .withdrawButton{
+                background-color: #D79797;
+                img{
+                    transform: rotateX(180deg);
+                }
+            }
+
+            .moreOptionsButton{
+                color: #EDF2D6;
+                border: 2px solid #EDF2D6;
+                padding: 25px;
+                p{
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}

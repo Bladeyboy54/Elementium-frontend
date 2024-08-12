@@ -1,6 +1,8 @@
 import React from "react";
 import "./index.css";
 import { Sidebar } from "../../../elements/Sidebar";
+import atomImg from "../../../assets/logo-notext-black.svg";
+import ProfileActionsComponent from "../../../components/ProfileComponents/ProfileActionsComponent/ProfileActionsComponent";
 
 export const User = () => {
   
@@ -17,6 +19,10 @@ export const User = () => {
 
         <div className="info">
           <div className="center-section">
+
+
+
+            {/* Plaque */}
             <div className="plaque">
               <div className="temp-shimmer"></div>
               <div className="plaque-info">
@@ -24,7 +30,23 @@ export const User = () => {
                 <h3>5355 **** **** 2546</h3>
                 <span className="plaque-date">08/26</span>
               </div>
+              <img className="atom-img" src={atomImg} alt="atom" />
+            </div> 
+            {/* end of Plaque */}
+
+
+            {/* Profile Actions Component */}
+            <ProfileActionsComponent />
+
+
+            {/* recent transactions */}
+            <div className="recent-transactions">
+              <div className="recent-transactions-block">
+                <h2>Recent Transactions</h2>
+              </div>
             </div>
+
+
           </div>
           <div className="right-section"></div>
           
