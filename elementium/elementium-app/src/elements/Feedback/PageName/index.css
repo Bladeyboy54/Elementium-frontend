@@ -1,0 +1,16 @@
+.page-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.page-name-text {
+}
+
+.page-name-line {
+  background: #333;
+  height: 0.5px;
+  width: 100%;
+}
