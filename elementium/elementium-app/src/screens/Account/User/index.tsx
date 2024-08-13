@@ -3,6 +3,7 @@ import "./index.css";
 import { Sidebar } from "../../../elements/Sidebar";
 import atomImg from "../../../assets/logo-notext-black.svg";
 import ProfileActionsComponent from "../../../components/ProfileComponents/ProfileActionsComponent/ProfileActionsComponent";
+import TransactionHistoryCardComponent from "../../../components/ProfileComponents/TransactionHistoryCardComponent/TransactionHistoryCardComponent";
 
 export const User = () => {
   
@@ -43,6 +44,18 @@ export const User = () => {
             <div className="recent-transactions">
               <div className="recent-transactions-block">
                 <h2>Recent Transactions</h2>
+                <div className="column-titles">
+                  <p>Type</p>
+                  <p>Recipient</p>
+                  <p>Amount</p>
+                </div>
+                <div className="scroll-history">
+                  <TransactionHistoryCardComponent type="sent" recipient="1234" amount="14058"/>
+                  <TransactionHistoryCardComponent type="received" recipient="1234" amount="14058" />
+                  <TransactionHistoryCardComponent type="withdrew" recipient="1234" amount="14058" />
+                  <TransactionHistoryCardComponent type="sent" recipient="1234" amount="14058" />
+
+                </div>
               </div>
             </div>
 
