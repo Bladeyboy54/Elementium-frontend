@@ -1,0 +1,16 @@
+.card {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #0C0D0C;
+    padding-top: 28px;
+    padding-bottom: 28px;
+  
+    .item {
+      flex: 1;
+      text-align: center;
+      padding: 5px;
+      font-size: 16px;
+    }
+  }
