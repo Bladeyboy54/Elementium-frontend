@@ -2,6 +2,9 @@ import React from "react";
 import "./index.css";
 import logoNoText from "../../assets/logo-notext-black.svg";
 import TransActionComponent from "./TransActionComponent/TransActionComponent";
+import TransHistoryCardComponent from "./TransHistoryCardComponent/TransHistoryCardComponent";
+
+
 export const Transactions = () => {
 
 
@@ -34,7 +37,27 @@ export const Transactions = () => {
 
           {/* /////////////////////Transactions Actions//////////////////// */}
 
-            <TransActionComponent/>
+          <TransActionComponent/>
+
+          {/* ////////////////////Transaction History///////////////////////// */}
+
+          <div className="transactionHistory">
+            <div className="transactionHistoryBlock">
+              <h2>Transaction History</h2>
+              <div className="columnTitles">
+                  <p>Type</p>
+                  <p>Recipient</p>
+                  <p>Amount</p>
+                </div>
+                <div className="scrollHistory">
+                  <TransHistoryCardComponent type="Sent" recipient="1234" amount="14058" />
+                  <TransHistoryCardComponent type="Received" recipient="5678" amount="3250" />
+                  <TransHistoryCardComponent type="Sent" recipient="1234" amount="14058" />
+                  <TransHistoryCardComponent type="Received" recipient="5678" amount="3250" />
+                </div>
+            </div>
+          </div>
+
 
         </div>
       </div>
