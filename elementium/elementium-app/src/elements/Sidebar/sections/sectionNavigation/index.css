@@ -1,0 +1,9 @@
+.section-nav-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  /* max-width: 150px; */
+  background: #b1b98e;
+}
