@@ -1,0 +1,82 @@
+.main{
+    display: flex;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 30%;
+    border-radius: 40px;
+    margin-top: -20px;
+    padding: 40px;
+    border: 2px solid #B1B98E;
+
+    .content{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 70%;
+
+        .actions{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            height: 70%;
+
+            .button{
+                color: #080808;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 25px; 
+                padding-left: 45px;
+                padding-right: 45px;
+                height: 10px;
+                border-radius: 20px;
+                margin-right: 0.8vw;
+
+                transition: all 0.4s ease;
+
+                p{
+                    font-weight: 700;
+                    margin-left: 0.8vw;
+                }
+
+                &:hover{
+                    cursor: pointer;
+                    filter: contrast(4);
+                }
+
+                &:active{
+                    transform: translateY(4px);
+                    filter: saturate(2);
+                }
+
+            }
+
+            .sendButton{
+                background-color: #93D69D;
+                width: 100%;
+            }
+
+            .receiveButton{
+                background-color: #8CD3C6;
+                width: 100%;
+            }
+
+            .withdrawButton{
+                background-color: #D79797;
+                width: 100%;
+            }
+
+            .moreOptionsButton{
+                color: #EDF2D6;
+                border: 2px solid #B1B98E;
+                padding: 25px;
+                p{
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
