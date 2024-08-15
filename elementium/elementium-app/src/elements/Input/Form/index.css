@@ -1,0 +1,21 @@
+.form {
+  padding: 2.25rem;
+  border: 1px solid #2e2e2e;
+  border-radius: 2.25rem;
+  background: #090909;
+}
+
+.form-heading-wrap {
+}
+
+.form-heading {
+}
+
+.form-subheading {
+}
+
+.form-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}

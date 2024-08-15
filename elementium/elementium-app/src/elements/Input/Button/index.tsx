@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import "./index.css";
 
-interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   label?: string;
   backgroundColor?: string;
   textColor?: string;
@@ -12,6 +12,8 @@ interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   height?: string;
   padding?: string;
   gap?: number;
+  align?: string;
+  justify?: string;
   borderColor?: string;
   borderRadius?: string;
   hoverBackgroundColor?: string;
@@ -21,7 +23,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  label = "...",
+  label = "",
   backgroundColor = "#EDF2D6",
   textColor = "#060604",
   textSize = "0.8rem",
@@ -31,6 +33,8 @@ export const Button: React.FC<ButtonProps> = ({
   height = "auto",
   padding = "10px 15px",
   gap = 10,
+  align = "center",
+  justify = "center",
   borderColor = "transparent",
   borderRadius = "15px",
   hoverBackgroundColor = "#050406",
@@ -63,20 +67,28 @@ export const Button: React.FC<ButtonProps> = ({
       "background-color 0.25s ease, color 0.15s ease, border-color 0.15s ease",
   };
 
+  const mouseEnter = (e: any) => {
+    (e.target as HTMLDivElement).style.backgroundColor = hoverBackgroundColor;
+    (e.target as HTMLDivElement).style.color = hoverTextColor;
+    (e.target as HTMLDivElement).style.borderColor = hoverBorderColor;
+  };
+
+  const mouseLeave = (e: any) => {
+    (e.target as HTMLDivElement).style.backgroundColor = backgroundColor;
+    (e.target as HTMLDivElement).style.color = textColor;
+    (e.target as HTMLDivElement).style.borderColor = borderColor;
+  };
+
   return (
     <div
-      style={{ ...defaultStyle, ...style }}
-      onMouseEnter={(e) => {
-        (e.target as HTMLDivElement).style.backgroundColor =
-          hoverBackgroundColor;
-        (e.target as HTMLDivElement).style.color = hoverTextColor;
-        (e.target as HTMLDivElement).style.borderColor = hoverBorderColor;
+      style={{
+        ...defaultStyle,
+        ...style,
+        justifyContent: justify,
+        alignItems: align,
       }}
-      onMouseLeave={(e) => {
-        (e.target as HTMLDivElement).style.backgroundColor = backgroundColor;
-        (e.target as HTMLDivElement).style.color = textColor;
-        (e.target as HTMLDivElement).style.borderColor = borderColor;
-      }}
+      onMouseEnter={mouseEnter}
+      onMouseLeave={mouseLeave}
       {...props}
     >
       {children}
