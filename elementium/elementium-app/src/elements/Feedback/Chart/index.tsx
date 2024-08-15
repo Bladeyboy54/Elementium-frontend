@@ -63,8 +63,8 @@ const LineChart: React.FC = () => {
         position: "top" as const,
       },
       title: {
-        display: true,
-        text: "Line Chart Example",
+        display: false,
+        // text: "Line Chart Example",
       },
     },
   };
