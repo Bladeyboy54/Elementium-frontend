@@ -1,16 +1,53 @@
-.card {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #0C0D0C;
-    padding-top: 28px;
-    padding-bottom: 28px;
-  
-    .item {
-      flex: 1;
-      text-align: center;
-      padding: 5px;
-      font-size: 16px;
-    }
+.main {
+  display: flex;
+  align-items: center;
+  width: 94%;
+  height: 2vh;
+  background-color: #0C0D0C;
+  border-radius: 20px;
+  padding: 1.7vw;
+  font-size: 12px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+
+  .type{
+      display: flex;
+      align-items: center;
+      color: aquamarine;
+      font-weight: 500;
+      font-size: 15px;
+      flex-basis: 15%;
+      gap: 0.5vw;
+      .icon {
+          width: 2vw;
+          filter: invert(100%);
+      }
+      .sent{
+          color: #93D69D;
+      }
+      .received{
+          color: #8CD3C6;
+      }
+      .withdrew{
+          color: #D79797;
+      }
   }
+
+
+  .recipient {
+      flex-grow: 1; 
+      text-align: center; 
+      color: white;
+      font-weight: 400;
+      font-size: 14px;
+      font-weight: 100;
+  }
+
+  .amount {
+      flex-basis: 20%; 
+      justify-content: flex-end;
+      display: flex;
+      font-weight: 100;
+      font-size: 15px;
+  }
+}

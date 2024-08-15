@@ -1,3 +1,16 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent any scrolling */
+    height: 100%;
+}
+
+.transactionsPage{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+}
 .pageTitleBox{
     display: flex;
     width: 100%;
@@ -47,7 +60,7 @@
     width: 200px;
     height: 200px;
     border-top-right-radius: 100%;
-    
+    margin-bottom: -25px;
 
 }
 
