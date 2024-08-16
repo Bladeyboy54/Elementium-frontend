@@ -1,0 +1,30 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    border: 1px solid #B1B98E;
+    border-radius: 12px;
+    padding: 10px;
+    padding-right: 1.5vw;
+
+    h1{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .content{
+        display: flex;
+        flex-direction: column;
+
+        .columnTitles{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px;
+            font-weight: 300;
+            font-size: 10px;
+        }
+    }
+}

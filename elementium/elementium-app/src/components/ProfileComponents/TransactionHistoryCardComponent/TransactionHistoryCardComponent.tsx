@@ -23,7 +23,12 @@ const TransactionHistoryCardComponent = (props: any) => {
                             className={styles.icon}
                 alt="icon" />
 
-                {displayType}
+
+                
+                {type === "sent" ? <p className={styles.sent}>{displayType}</p> :
+                type === "received" ? <p className={styles.received}>{displayType}</p> :
+                type === "withdrew" ? <p className={styles.withdrew}>{displayType}</p> :
+                <p className={styles.placeholder}>{displayType}</p>}
 
             </div>
             <div className={styles.recipient}>
