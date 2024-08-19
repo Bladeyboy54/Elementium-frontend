@@ -6,7 +6,11 @@ interface BodyWrapperProps {
 }
 
 const BodyGridWrapper: React.FC<BodyWrapperProps> = ({ sidebar, children }) => {
-  return <div style={styles.bodyGridContainer}>{children}</div>;
+  return (
+    <div className="body-grid-wrap" style={styles.bodyGridContainer}>
+      {children}
+    </div>
+  );
 };
 
 const styles: { bodyGridContainer: React.CSSProperties } = {

@@ -20,7 +20,7 @@ export const InputFieldText: React.FC<IInputFieldProps> = ({
   icon,
   textColor = "#EDF2D6",
   widthWrap = "fit-content",
-  widthValue = "100px",
+  widthValue = "",
   value = "",
   onChange,
 }) => {

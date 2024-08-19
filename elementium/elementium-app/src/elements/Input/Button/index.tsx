@@ -94,7 +94,7 @@ export const Button: React.FC<ButtonProps> = ({
       {children}
       {label && (
         <div
-          className="button-text"
+          className="btn-text"
           style={{ marginLeft: children ? "0px" : "0", background: "" }}
         >
           {label}

@@ -12,7 +12,11 @@ export const PrivateRoute: React.FC<{ children: ReactNode }> = ({
     return <Navigate to="/onboarding/landing" />;
   }
 
-  return <>{children}</>;
+  return (
+    <div className="private-route" style={{ width: "100%" }}>
+      {children}
+    </div>
+  );
 };
 
 // Wrapper for public routes
@@ -25,5 +29,9 @@ export const PublicRoute: React.FC<{ children: ReactNode }> = ({
     return <Navigate to="/" />;
   }
 
-  return <>{children}</>;
+  return (
+    <div className="public-route" style={{ width: "100%" }}>
+      {children}
+    </div>
+  );
 };

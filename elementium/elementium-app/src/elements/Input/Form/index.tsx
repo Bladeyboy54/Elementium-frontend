@@ -21,7 +21,7 @@ export const Form: React.FC<IForm> = ({
   ...props
 }) => {
   return (
-    <div className="form" style={style}>
+    <form className="form" style={style}>
       <div className="form-heading-wrap h1">
         <div className="form-heading">{heading}</div>
         {customSubheading ? (
@@ -32,6 +32,6 @@ export const Form: React.FC<IForm> = ({
       </div>
       <div className="form-input-wrap">{children}</div>
       {submitButton}
-    </div>
+    </form>
   );
 };
