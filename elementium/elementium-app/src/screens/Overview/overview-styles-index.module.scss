@@ -4,22 +4,14 @@
 html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent any scrolling */
-    height: 100%;
+    // overflow: hidden; /* Prevent any scrolling */
+    // height: 100%;
 }
 
 .main{
     display: flex;
     flex-direction: row;
     color: #B1B98E;
-}
-
-.side-bar-section{
-    display: flex;
-    width: 12%;
-    height: 100vh;
-    border: 0 solid #1E1E1E;
-    border-right-width: 1px;
 }
 
 .content{
@@ -29,7 +21,7 @@ html, body {
     height: 100vh;
 }
 
-.welcome-title-section{
+.welcomeTitleSection{
     display: flex;
     width: 100%;
     height: 10%;
@@ -41,7 +33,7 @@ html, body {
 
     }
 }
-.filler-line{
+.fillerLine{
     display: flex;
     height: 10%;
     min-width: 20%;
@@ -56,7 +48,7 @@ html, body {
     height: 100%;
 }
 
-.center-section{
+.centerSection{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,7 +66,7 @@ html, body {
     overflow: hidden;
     border-radius: 40px;
 }
-.temp-shimmer{
+.tempShimmer{
     display: flex;
     background-color: #CCC1E0;
     width: 300px;
@@ -83,7 +75,7 @@ html, body {
     margin-top: 25%;
     margin-left: -10%;
 }
-.plaque-info{
+.plaqueInfo{
     display: flex;
     flex-direction: column;
     margin-left: -10%;
@@ -94,19 +86,19 @@ html, body {
         padding: 0;
     }
 }
-.bold-text{
+.boldText{
     font-weight: bold;
 }
-.plaque-date{
+.plaqueDate{
     margin-top: -20px;
 }
 
-.atom-img{
+.atomImg{
     margin-left: auto;
     margin-right: 5%;
 }
 
-.recent-transactions{
+.recentTransactions{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -119,7 +111,7 @@ html, body {
     font-family: "Spectral", sans-serif;
 }
 
-.recent-transactions-block{
+.recentTransactionsBlock{
     display: flex;
     flex-direction: column;
     min-height: 20%;
@@ -142,7 +134,7 @@ html, body {
     }
 }
 
-.column-titles{
+.columnTitles{
     display: flex;
     flex-direction: row;
     width: 98%;
@@ -159,7 +151,7 @@ html, body {
     }
 }
 
-.scroll-history{
+.scrollHistory{
     display: flex;
     flex-direction: column;
     gap: 0.5vh;

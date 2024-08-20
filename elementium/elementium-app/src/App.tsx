@@ -9,11 +9,9 @@ import { User } from "./screens/Account/User";
 
 function App() {
   return (
-    // <AuthProvider>
-    //   <Routes />
-    // </AuthProvider>
-
-    <User />
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
   );
 }
 
