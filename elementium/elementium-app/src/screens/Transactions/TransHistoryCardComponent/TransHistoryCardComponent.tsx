@@ -5,24 +5,6 @@ import transferIcon from "../../../assets/icons/Transfer.svg";
 import withdrawIcon from "../../../assets/icons/download.svg";
 import placeholder from "../../../assets/logo-notext-black.svg";
 
-// type TransHistoryCardComponentProps = {
-//     type: string;
-//     recipient: string;
-//     amount: string | number;
-//   };
-
-// const TransHistoryCardComponent: React.FC<TransHistoryCardComponentProps> = ({ type, recipient, amount }) => {
-//     return (
-//         <>
-//             <div className={styles.card}>
-//                 <div className={styles.item}>{type}</div>
-//                 <div className={styles.item}>{recipient}</div>
-//                 <div className={styles.item}>{amount} ZAR</div>
-//             </div>
-//         </>
-//     )
-// }
-
 const TransHistoryCardComponent = (props: any) => {
 
     const {type, recipient, amount} = props;
@@ -35,7 +17,7 @@ const TransHistoryCardComponent = (props: any) => {
             <div className={styles.type}>
 
                 <img src={  type === "sent" ? payIcon :
-                            type === "received" ? transferIcon :
+                            type === "transfer" ? transferIcon :
                             type === "withdrew" ? withdrawIcon :
                             placeholder} 
                             className={styles.icon}
@@ -44,7 +26,7 @@ const TransHistoryCardComponent = (props: any) => {
 
                 
                 {type === "sent" ? <p className={styles.sent}>{displayType}</p> :
-                type === "received" ? <p className={styles.received}>{displayType}</p> :
+                type === "transfer" ? <p className={styles.transfer}>{displayType}</p> :
                 type === "withdrew" ? <p className={styles.withdrew}>{displayType}</p> :
                 <p className={styles.placeholder}>{displayType}</p>}
 

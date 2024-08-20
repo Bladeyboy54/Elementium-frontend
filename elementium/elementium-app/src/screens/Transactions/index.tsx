@@ -50,12 +50,12 @@ export const Transactions = () => {
                   <p>Amount</p>
                 </div>
                 <div className="scrollHistory">
-                  <TransHistoryCardComponent type="Sent" recipient="1234" amount="14058" />
-                  <TransHistoryCardComponent type="Received" recipient="5678" amount="3250" />
-                  <TransHistoryCardComponent type="Sent" recipient="1234" amount="14058" />
-                  <TransHistoryCardComponent type="Received" recipient="5678" amount="3250" />
-                  <TransHistoryCardComponent type="Sent" recipient="1234" amount="14058" />
-                  <TransHistoryCardComponent type="Received" recipient="5678" amount="3250" />
+                  <TransHistoryCardComponent type="sent" recipient="1234" amount="14058" />
+                  <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
+                  <TransHistoryCardComponent type="withdrew" recipient="1234" amount="14058" />
+                  <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
+                  <TransHistoryCardComponent type="sent" recipient="1234" amount="14058" />
+                  <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
                 </div>
             </div>
           </div>
