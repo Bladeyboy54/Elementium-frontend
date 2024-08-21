@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 2.25rem;
+  border: 1px solid #2e2e2e;
+  border-radius: 2.25rem;
+  background: #090909;
+  gap: 40px;
+}
+
+.form-heading-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-heading {
+}
+
+.form-subheading {
+  font-family: "Satoshi";
+  font-weight: 500;
+  font-size: 0.825rem;
+}
+
+.form-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
