@@ -4,3 +4,23 @@
   color: #b1b98e;
   line-height: 90%;
 }
+
+.button-text {
+  color: #ffffe3;
+  font-family: "Satoshi";
+  font-size: 0.825rem;
+  font-style: normal;
+  font-weight: 600;
+  /* line-height: normal; */
+  cursor: pointer;
+}
+
+.button-text:hover {
+  /* color: #e1dcea; */
+  text-decoration: underline;
+}
+
+.text-body {
+  font-size: 0.825rem;
+  font-family: "Satoshi";
+}

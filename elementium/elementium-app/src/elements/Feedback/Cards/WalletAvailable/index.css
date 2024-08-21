@@ -1,0 +1,70 @@
+.wallet-available {
+  border-radius: 2.25rem;
+  overflow: clip;
+  width: 100%;
+}
+
+.wallet-available-wrap {
+  background: #edf2d6;
+  border-radius: 2.25rem;
+  color: #090909;
+  padding: 2.25rem;
+  padding-bottom: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wallet-available-left {
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.wallet-available-left-amount-avail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+  line-height: 95%;
+  display: flex;
+  gap: 0.65rem;
+}
+
+.wallet-available-left-amount {
+  font-family: "Satoshi";
+  font-style: normal;
+  font-weight: 900;
+  color: #121310;
+}
+
+.wallet-available-left-amount-postlabel {
+  font-family: "Satoshi";
+}
+
+.wallet-available-left-acc {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.wallet-available-left-acc-label {
+  opacity: 0.7;
+  font-family: "Satoshi";
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.wallet-available-left-acc-number {
+  font-family: "Satoshi";
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #121310;
+}
+
+.wallet-available-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
