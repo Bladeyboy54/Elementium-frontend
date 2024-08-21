@@ -26,7 +26,7 @@ export const SectionNavigation = () => {
     {
       label: "Transaction",
       icon: <TbArrowsExchange size={iconSize} />,
-      route: "/transaction",
+      route: "/transactions",
     },
     {
       label: "Market",
