@@ -31,7 +31,7 @@ export const Transactions = () => {
               <h3>5355 **** **** 2546</h3>
               <span className="accountDate">08/26</span>
             </div>
-                <img className="logoNoText" src={logoNoText} alt="atom" />
+                <img className="logoNoText-transaction" src={logoNoText} alt="atom" />
           </div>
           {/* //////////////////////End Plaque Section/////////////////// */}
 

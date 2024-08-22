@@ -14,21 +14,21 @@ export const Error404 = () => {
 
   return(
     <>
-      <div className="navigate-back" onClick={navigateBack}>
+      <div className="navigate-back-404" onClick={navigateBack}>
         <TbArrowLeft
           color="#080808"
-          className="navigate-back-icon"
+          className="navigate-back-icon-404"
         />
       </div>
-      <div className="PageContainer">
+      <div className="PageContainer-404">
 
-        <div className="columns">
-          <div className="ErrorColumn1">
+        <div className="columns-404">
+          <div className="ErrorColumn1-404">
             <h1>404</h1>
             <p>Page not found</p>
           </div>
-          <div className="ErrorColumn2">
-            <img src={LogoNoText} className="logoNoText" />
+          <div className="ErrorColumn2-404">
+            <img src={LogoNoText} className="logoNoText-404" />
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-.PageContainer{
+.PageContainer-404{
  height: 100vh;
  width: 100vw;
  display: flex;
@@ -6,7 +6,7 @@
  justify-content: center;
 }
 
-.columns{
+.columns-404{
     display: flex;
     flex-direction: row;
     width: 90%;
@@ -14,7 +14,7 @@
     /* background-color: yellow; */
 }
 
-.ErrorColumn1 {
+.ErrorColumn1-404 {
     width: 50%;
     height: 100%;
     /* background-color: blue; */
@@ -30,21 +30,21 @@
     }
 }
 
-.ErrorColumn2 {
+.ErrorColumn2-404 {
     width: 50%;
     height: 100%;
     /* background-color: blue; */
     display: flex;
     align-items: center;
     /* justify-content: center; */
-    padding-right: 10%;
+    /* padding-right: 10%; */
 }
 
-.logoNoText {
+.logoNoText-404 {
     height: 100%;
 }
 
-.navigate-back {
+.navigate-back-404 {
     background: #edf2d6;
     padding: 20px;
     border-radius: 40px;
@@ -57,7 +57,7 @@
     cursor: pointer;
   }
   
-  .navigate-back:hover {
+  .navigate-back-404:hover {
     opacity: 0.35;
     transition: all ease 0.2s;
   }
