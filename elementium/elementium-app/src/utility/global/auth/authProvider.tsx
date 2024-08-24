@@ -1,22 +1,32 @@
+import axios from "axios";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 export interface User {
-  id: number;
+  id?: number;
   email: string;
   username: string;
-  avatar: string;
+  avatar?: string;
   role: "user" | "admin" | "";
+}
+
+export interface NewUser extends User {
+  password: string;
 }
 
 // Shape of context
 interface AuthContextType {
-  userLoggedIn: User;
+  onboardingEmail: string | null;
+  onboardingName: string | null;
+  userLoggedIn: User | null;
   isAuthenticated: boolean;
   hasPermission: boolean;
   createAccount: (userForm: ILoginFormType) => Promise<IFeedback>;
   login: (userForm: ILoginFormType) => Promise<IFeedback>;
   approveOTP: (otp: number) => Promise<IFeedback>;
+  setUserLoggedIn: (user: User | null) => void;
   setPermission: (permission: boolean) => void;
+  setOnboardingEmail: (email: string | null) => void;
+  setOnboardingName: (name: string | null) => void;
   logout: () => void;
 }
 
@@ -48,10 +58,11 @@ export const useAuth = (): AuthContextType => {
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  // const [userLoggedIn, setUserLoggedIn] = useState<User>({});
+  const [onboardingEmail, setOnboardingEmail] = useState<string | null>(null);
+  const [onboardingName, setOnboardingName] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [hasPermission, setHasPermission] = useState<boolean>(false);
-  const [userLoggedIn, setLoggedIn] = useState<User>({
+  const [userLoggedIn, setUserLoggedIn] = useState<User | null>({
     id: 1,
     email: "",
     username: "",
@@ -81,22 +92,42 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const login = async (userForm?: ILoginFormType): Promise<IFeedback> => {
-    // TODO: Verify with backend userForm details
+    let feedback: IFeedback = {
+      type: 200,
+      status: "Success",
+      message: "Login successful",
+    };
+
     try {
-      const feedback: IFeedback = {
-        type: 200,
-        status: "Success",
-        message: "Login successful",
-      };
-      return feedback;
+      const response = await axios.post(
+        "http://localhost:5138/api/OTP/send-code",
+        {
+          email: userForm?.email,
+        }
+      );
+
+      if (response.status === 200) {
+        feedback = {
+          ...feedback,
+          body: response.data,
+        };
+      } else {
+        feedback = {
+          type: response.status,
+          status: "Error",
+          message: `Unexpected response status: ${response.status}`,
+        };
+      }
     } catch (error) {
-      const feedback: IFeedback = {
+      feedback = {
         type: 500,
         status: "Error",
-        message: "Login failed",
+        message: error instanceof Error ? error.message : "Unknown error",
       };
-      return feedback;
     }
+
+    console.log(feedback);
+    return feedback;
   };
 
   const approveOTP = async (otp: number): Promise<IFeedback> => {
@@ -135,6 +166,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <AuthContext.Provider
       value={{
+        onboardingEmail,
+        onboardingName,
         userLoggedIn,
         isAuthenticated,
         hasPermission,
@@ -142,7 +175,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         login,
         logout,
         approveOTP,
+        setUserLoggedIn,
         setPermission,
+        setOnboardingEmail,
+        setOnboardingName,
       }}
     >
       {children}

@@ -23,4 +23,5 @@
 .text-body {
   font-size: 0.825rem;
   font-family: "Satoshi";
+  line-height: 140%;
 }

@@ -7,9 +7,11 @@ import { InputFieldText } from "../../../elements/Input/InputField";
 import { OnboadingTemplate } from "../../../utility/ui/OnboardingTemplate/index-onboading-template";
 import { useAuth } from "../../../utility/global/auth/authProvider";
 import { TbMedicalCrossCircle } from "react-icons/tb";
+import { shortenText } from "../../../utility/ui/shortenText";
 
 export const OTP = () => {
-  const { approveOTP } = useAuth();
+  const { onboardingEmail, onboardingName, approveOTP } = useAuth();
+  const username = shortenText(onboardingName!, 15);
   const navigate = useNavigate();
   const verifyUser = () => {
     approveOTP(1234);
@@ -17,7 +19,8 @@ export const OTP = () => {
   };
   const subheading = (
     <div className="text-body">
-      Enter your OTP sent to your email - <b>name@provider.com</b>
+      Hi {username},<br />
+      Enter OTP sent to email: <b>{onboardingEmail}</b>
     </div>
   );
   const OTPForm = (
