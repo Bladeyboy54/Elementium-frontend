@@ -1,0 +1,78 @@
+.market-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.market-right-rates {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #edf2d6;
+  border-radius: 20px;
+  height: fit-content;
+}
+
+.market-right-label {
+}
+
+.market-right-rates-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.market-right-rates-heading-wrap {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.market-right-rates-heading {
+  color: #929292;
+  font-family: "Satoshi";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.market-right-rates-rate {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  background: #0d0d0d;
+  border-radius: 10px;
+}
+
+.market-right-rates-rate-type {
+  color: #fff;
+  font-family: "Satoshi Variable";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.market-right-rates-amount {
+  color: #fff;
+  font-family: "Satoshi Variable";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.market-right-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #1f1f1f;
+}
+
+.market-right-chart-heading {
+  font-family: "Spectral";
+  font-weight: 900;
+}

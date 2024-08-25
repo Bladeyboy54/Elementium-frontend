@@ -1,0 +1,26 @@
+.market-left {
+  /* height: 100%; */
+}
+
+.market-left-form {
+  position: relative;
+  margin-top: -30px;
+  /* height: calc(100% - 187.8px); */
+  padding: 0 20px;
+}
+
+.market-left-form-amount {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.market-left-form-amount-rate {
+  background: #0e0e0e;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  height: fit-content;
+  width: fit-content;
+  color: #b1b98e;
+}

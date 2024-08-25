@@ -26,7 +26,7 @@ export const SectionNavigation = () => {
     {
       label: "Transaction",
       icon: <TbArrowsExchange size={iconSize} />,
-      route: "/transaction",
+      route: "/transactions",
     },
     {
       label: "Market",
@@ -42,9 +42,9 @@ export const SectionNavigation = () => {
   return (
     <div className="section-nav-wrap">
       {/* {location.pathname} */}
-      {screens.map((screen) =>
+      {screens.map((screen, i) =>
         screen.route === currentScreen ? (
-          <NavLink to={screen.route}>
+          <NavLink to={screen.route} key={i}>
             <Button
               key={screen.route}
               label={screen.label}
@@ -54,12 +54,13 @@ export const SectionNavigation = () => {
               hoverTextColor="#060604"
               hoverBackgroundColor="#B1B98E"
               hoverBorderColor="#060604"
+              justify="flex-start"
             >
               {screen.icon}
             </Button>
           </NavLink>
         ) : (
-          <NavLink to={screen.route}>
+          <NavLink to={screen.route} key={i}>
             <Button
               key={screen.route}
               label={screen.label}
@@ -68,6 +69,7 @@ export const SectionNavigation = () => {
               hoverTextColor="#060604"
               hoverBackgroundColor="#B1B98E"
               hoverBorderColor="#060604"
+              justify="flex-start"
             >
               {screen.icon}
             </Button>

@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import { useAuth } from "../../../utility/global/auth/authProvider";
+import { IFeedback, useAuth } from "../../../utility/global/auth/authProvider";
+import { InputFieldText } from "../../../elements/Input/InputField";
+import Button from "../../../elements/Input/Button";
+import { Form } from "../../../elements/Input/Form";
+import { OnboadingTemplate } from "../../../utility/ui/OnboardingTemplate/index-onboading-template";
+import { useNavigate } from "react-router-dom";
+import { TbMail, TbUser, TbLock } from "react-icons/tb";
 
 interface IUserForm {
   email: string;
@@ -8,36 +14,63 @@ interface IUserForm {
 }
 
 export const Login = () => {
+  const navigate = useNavigate();
   const { login } = useAuth();
   const [userForm, setUserForm] = useState<IUserForm>({
     email: "",
     password: "",
   });
 
+  const goToOTP = async () => {
+    let loginResponse = await login(userForm);
+
+    // Ensure loginResponse is not void
+    if (loginResponse.type === 200) {
+      navigate("/onboarding/otp");
+    }
+  };
+
   useEffect(() => {}, [userForm]);
 
-  return (
-    <div>
-      Login{userForm.email}
-      <input
-        type="text"
-        placeholder="Enter email"
-        value={userForm.email}
-        onChange={(e) => setUserForm({ ...userForm, email: e.target.value })}
-      />
-      <input
-        type="password"
-        placeholder="Enter Password"
-        value={userForm.password}
-        onChange={(e) => setUserForm({ ...userForm, password: e.target.value })}
-      />
-      <button
-        onClick={(e) => {
-          login(userForm);
-        }}
+  const subheading = (
+    <div className="login-subheading">
+      Not a member yet?{" "}
+      <div
+        className="button-text"
+        onClick={(e) => navigate("/onboarding/create-account")}
       >
-        Login
-      </button>
+        Create Account
+      </div>
+    </div>
+  );
+
+  const LoginForm = (
+    <Form
+      heading="Login"
+      customSubheading={subheading}
+      submitButton={<Button onClick={goToOTP}>Login</Button>}
+      style={{ width: "360px", gap: "40px" }}
+    >
+      <InputFieldText
+        type="text"
+        placeholder="Email"
+        widthWrap="-webkit-fill-available"
+        icon={<TbMail />}
+      />
+      <InputFieldText
+        type="password"
+        placeholder="Enter password"
+        widthWrap="-webkit-fill-available"
+        icon={<TbLock />}
+      />
+    </Form>
+  );
+
+  return (
+    <div className="login">
+      {/* Login{userForm.email}
+       */}
+      <OnboadingTemplate pageHeading="Welcome back." form={LoginForm} />
     </div>
   );
 };

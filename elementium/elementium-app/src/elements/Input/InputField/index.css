@@ -1,0 +1,38 @@
+.input-field {
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.95rem;
+  border: 1px solid #333;
+  height: fit-content;
+  justify-content: space-between;
+}
+
+.input-focus {
+  border: 1px solid #edf2d6;
+  outline: 5px solid #edf2d615;
+  transition: all ease 0.8s;
+}
+
+.input-field-icon {
+}
+
+.input-field-value {
+  background: none;
+  outline: none;
+  border: none;
+  width: -webkit-fill-available;
+}
+
+.input-field-password-icon {
+  padding: 0px 2px;
+  border: 1px solid #33333300;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-field-password-icon:hover {
+  background: #edf2d60e;
+  border: 1px solid #333;
+}
