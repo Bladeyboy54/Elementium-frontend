@@ -3,62 +3,70 @@ import atomImg from "../../assets/logo-notext-black.svg";
 import ProfileActionsComponent from "../../components/ProfileComponents/ProfileActionsComponent/ProfileActionsComponent";
 import TransactionHistoryCardComponent from "../../components/ProfileComponents/TransactionHistoryCardComponent/TransactionHistoryCardComponent";
 import CurrentInvestmentsComponent from "../../components/CurrentInvestmentsComponent/CurrentInvestmentsComponent";
-import styles from "./overview-styles-index.module.scss"
+import styles from "./overview-styles-index.module.scss";
+import { fetchData } from "../../services/GetUser";
 
 const Overview = () => {
-
-  // Temporary api call for demonstration purposes
-  // example POST request: 
-  //    {
-  //    "username": "john",
-  //    "email": "john@mail.com"
-  //    }
-
-
   const [user, setUser] = useState<any>({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:5138/api/UsersInfo/3"); //temporary api call with hardcoded id, 
-        //                                                                      changing this with a chosen id for now to demonstrate
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log(data);
-        setUser(data);
-      } catch (error) {
-        console.error("Fetch error:", error);
-      }
-    };
-
-    fetchData();
+    fetchData().then((data) => {
+      setUser(data);
+      setTimeout(() => setLoading(false), 1000);
+    });
   }, []);
 
   return (
     <>
       <div className={styles.main}>
         <div className={styles.content}>
-          <div className={styles.welcomeTitleSection}>
-            {user.username != null ? <h1>Welcome, {user.username}</h1> : <h1>Welcome, Mr. King</h1>}
-            <div className={styles.fillerLine}></div>
-          </div>
+          {loading ? (
+            <div className={styles.welcomeTitleSection}>
+              <h1>Loading...</h1>
+              <div className={styles.fillerLine}></div>
+            </div>
+          ) : (
+            <div className={styles.welcomeTitleSection}>
+              {user.username != null ? (
+                <h1>Welcome, {user.username}</h1>
+              ) : (
+                <h1>Welcome, Mr. King</h1>
+              )}
+              <div className={styles.fillerLine}></div>
+            </div>
+          )}
 
           <div className={styles.info}>
             <div className={styles.centerSection}>
               {/* Plaque */}
               <div className={styles.plaque}>
                 <div className={styles.tempShimmer}></div>
-                <div className={styles.plaqueInfo}>
-                  {user.username != null ?(<p>
-                    <span className={styles.boldText}>{user.username}</span> {user.email}
-                  </p>):(<p>
-                    <span className={styles.boldText}>Felix</span> King
-                  </p>)}
-                  <h3>5355 **** **** 2546</h3>
-                  <span className={styles.plaqueDate}>08/26</span>
-                </div>
+                { loading ? null :
+                  <div className={styles.plaqueInfo}>
+                    {user.username != null ? (
+                      <>
+                        <p>
+                          <span className={styles.boldText}>
+                            {user.username}
+                          </span>{" "}
+                          {user.email}
+                        </p>
+                        <h3>5355 **** **** 2546</h3>
+                        <span className={styles.plaqueDate}>08/26</span>
+                      </>
+                    ) : (
+                      <>
+                        <p>
+                          <span className={styles.boldText}>Felix</span> King
+                        </p>
+
+                        <h3>5355 **** **** 2546</h3>
+                        <span className={styles.plaqueDate}>08/26</span>
+                      </>
+                    )}
+                  </div>
+                }
                 <img className={styles.atomImg} src={atomImg} alt="atom" />
               </div>
               {/* end of Plaque */}
@@ -124,6 +132,5 @@ const Overview = () => {
     </>
   );
 };
-
 
 export default Overview;
