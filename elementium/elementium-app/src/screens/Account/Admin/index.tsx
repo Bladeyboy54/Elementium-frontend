@@ -28,7 +28,15 @@ export const Admin = () => {
               <p>Admin Action</p>
             </div>
             <div className="adminUsersTableScroll">
-              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction/>
+              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="active"/>
+              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
+              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
+              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="active"/>
+              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
+              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="active"/>
+              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
+              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
+              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
             </div>
           </div>
         </div>

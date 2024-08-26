@@ -6,6 +6,16 @@ const AdminUsersTable = (props: any) => {
 
     const { id, name, userID, login, accType, adminAction } = props;
 
+    const getActionButtonText = () => {
+        return adminAction === "active" ? "Disable" : "Activate";
+    }
+    const getButtonClass = () => {
+        return adminAction === "active" ? styles.adminTbButtonActive : styles.adminTbButtonInactive;
+    };
+
+    // const getButtonStyle = () => {
+    //     return adminAction === "active" ? { color: "green" } : { color: "red" };
+    // };
     return (
 
         <>
@@ -32,7 +42,11 @@ const AdminUsersTable = (props: any) => {
                 </div>
 
                 <div className={styles.adminTbAdminAction}>
-                    <button>{adminAction}<p>Activate</p></button>
+                    <div className={`${styles.adminTbButton} ${getButtonClass()}`}
+                    //  style={getButtonStyle()}
+                     >
+                        <p>{getActionButtonText()}</p>
+                    </div>
                 </div>
             </div>
         </>

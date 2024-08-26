@@ -38,7 +38,7 @@
     width: 100%;
     min-height: 10%;
     flex-grow: 1;
-    max-height: 42%;
+    max-height: 90%;
     color: #EDF2D6;
     font-family: Spectral;
 }
@@ -46,7 +46,7 @@
 .adminUsersTableBlock{
     display: flex;
     flex-direction: column;
-    min-height: 20%;
+    /* min-height: 20%; */
     flex-grow: 1;
     max-height: 100%;
     width: 90%;
@@ -69,12 +69,14 @@
 .adminUsersTableTitles{
     display: flex;
     flex-direction: row;
+    align-self: center;
     width: 98%;
     justify-content: space-between;
     margin-top: 2%;
     margin-bottom: 2%;
     padding-right: 2%;
     p{
+        /* flex-grow: 1; */
         font-size: 12px;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         font-weight: 100;
