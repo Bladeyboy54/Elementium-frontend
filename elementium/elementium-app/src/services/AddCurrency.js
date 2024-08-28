@@ -1,5 +1,3 @@
-import React from "react";
-
 export const addCurrency = async (args) => {
 
     //example of expected args: userId = 1, amount = 100, currency = "h2"
@@ -56,15 +54,33 @@ export const addCurrency = async (args) => {
     balance_xe,
   };
 
-  try { //<-- thsi next try catch will put the new balances into the user account 
-    const response = await put(
+//   try { //<-- thsi next try catch will put the new balances into the user account 
+//     const response = await put(
+//       `http://localhost:5138/api/Account/${userId}`,
+//       payload
+//     );
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+//     return data;
+//   } catch (error) {
+//     console.error("Fetch error:", error);
+//   }
+try {
+    const putResponse = await fetch(
       `http://localhost:5138/api/Account/${userId}`,
-      payload
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
     );
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    if (!putResponse.ok) {
+      throw new Error(`HTTP error! status: ${putResponse.status}`);
     }
-    return data;
+    return await putResponse.json(); // Return the response from the PUT request
   } catch (error) {
     console.error("Fetch error:", error);
   }

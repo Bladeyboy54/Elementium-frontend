@@ -7,7 +7,7 @@ import styles from "./overview-styles-index.module.scss";
 import { fetchData } from "../../services/GetUser";
 
 const Overview = () => {
-  const [user, setUser] = useState<any>({});
+  const [user, setUser] = useState<any>({username: "dummy", email: "dummy"});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Overview = () => {
       setUser(data);
       setTimeout(() => setLoading(false), 1000);
     });
-  }, []);
+  }, [fetchData]);
 
   return (
     <>
@@ -28,7 +28,7 @@ const Overview = () => {
             </div>
           ) : (
             <div className={styles.welcomeTitleSection}>
-              {user.username != null ? (
+              {user.username != "dummy" ? (
                 <h1>Welcome, {user.username}</h1>
               ) : (
                 <h1>Welcome, Mr. King</h1>
@@ -72,7 +72,7 @@ const Overview = () => {
               {/* end of Plaque */}
 
               {/* Profile Actions Component */}
-              <ProfileActionsComponent />
+              <ProfileActionsComponent user={user} />
 
               {/* recent transactions */}
               <div className={styles.recentTransactions}>
