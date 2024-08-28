@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import { Form } from "../../../elements/Input/Form";
 import Button from "../../../elements/Input/Button";
@@ -11,18 +11,24 @@ import { shortenText } from "../../../utility/ui/shortenText";
 
 export const OTP = () => {
   const { onboardingEmail, onboardingName, approveOTP } = useAuth();
+  const [verifyOTPForm, setVerifyOTPForm] = useState<any>({
+    otp: Number,
+  });
   const username = shortenText(onboardingName!, 15);
   const navigate = useNavigate();
   const verifyUser = () => {
-    approveOTP(1234);
+    approveOTP(verifyOTPForm);
     navigate("/");
   };
+
   const subheading = (
     <div className="text-body">
       Hi {username},<br />
       Enter OTP sent to email: <b>{onboardingEmail}</b>
     </div>
   );
+
+  useEffect(() => {}, [verifyOTPForm]);
   const OTPForm = (
     <Form
       heading="One Time Pin"
@@ -34,6 +40,9 @@ export const OTP = () => {
         type="number"
         placeholder="Enter OTP"
         widthWrap="-webkit-fill-available"
+        onChange={(e) => {
+          setVerifyOTPForm({ ...verifyOTPForm, otp: e });
+        }}
         icon={<TbMedicalCrossCircle />}
       />
     </Form>

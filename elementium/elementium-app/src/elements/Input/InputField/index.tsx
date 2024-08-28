@@ -11,6 +11,7 @@ interface IInputFieldProps {
   widthValue?: string;
   widthWrap?: string;
   value?: string;
+  isRequired?: boolean;
   onChange?: (value: string) => void;
 }
 
@@ -22,6 +23,7 @@ export const InputFieldText: React.FC<IInputFieldProps> = ({
   widthWrap = "fit-content",
   widthValue = "",
   value = "",
+  isRequired,
   onChange,
 }) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
@@ -59,6 +61,7 @@ export const InputFieldText: React.FC<IInputFieldProps> = ({
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={handleInputChange}
+        {...(isRequired && require)}
       />
       {type === "password" && (
         <div
