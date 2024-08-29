@@ -41,7 +41,7 @@ export const Login = () => {
       setIsLoading(false);
       // Catch any network errors or unexpected issues
       const feedback = error;
-      setFeedbackMessage(feedback.message);
+      setFeedbackMessage(feedback.response.data.message);
       console.error(feedback);
     }
   };

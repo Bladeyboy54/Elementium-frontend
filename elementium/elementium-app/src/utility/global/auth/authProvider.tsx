@@ -146,6 +146,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     if (res) {
       await sendOTP(res); // Ensure sendOTP is awaited within an async function
       setOnboardingName(res.username);
+      setUserLoggedIn(res);
     } else {
       const feedback: IFeedback = {
         type: 500, // Return the actual status code if available
