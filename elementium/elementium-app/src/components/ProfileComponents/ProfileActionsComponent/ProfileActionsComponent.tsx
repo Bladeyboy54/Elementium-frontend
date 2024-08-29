@@ -9,7 +9,12 @@ const ProfileActionsComponent = (props: any) => {
 
   const [usingExtraActions, setUsingExtraActions] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [addPayload, setAddPayload] = useState({ userId: 1, currency: "h2", amount: 0 });
+  const [addPayload, setAddPayload] = useState({
+    userId: 1,
+    currency: "h2",
+    amount: 0,
+  });
+  const [costZAR, setCostZAR] = useState(0);
 
   const closeModal = (e: any) => {
     //<-- chatGPT helped with this specific targetting to make sure that the user click doesn't propagate.
@@ -18,12 +23,45 @@ const ProfileActionsComponent = (props: any) => {
     }
   };
 
-  const handlePayloadChange = (e: any) => { //<-- had to double check how to do this, created a similar function in 2nd year, love this kind of onchange!
+  const handlePayloadChange = (e: any) => {
+    //<-- had to double check how to do this, created a similar function in 2nd year, love this kind of onchange!
     const { name, value } = e.target; //<-- custom name and value feilds taken from the target.
-    setAddPayload((prevState) => ({ //<-- sets the previous state using a spread operator and adds the new key value pairs.
-      ...prevState,
-      [name]: value,
-    })); //<-- this type of function ensures that the newly edited key value pair is updated while keeping the old ones, all in one callback.
+    setAddPayload((prevState) => {
+      const updatedPayload = { ...prevState, [name]: value }; //<-- sets the previous state using a spread operator and adds the new key value pairs.
+      //this type of function ensures that the newly edited key value pair is updated while keeping the old ones, all in one callback.
+
+      if (name == "currency") {
+        setCostZAR(0); //<-- this just resets the cost to 0 if the user changes the currency so the old price doesnt linger around.
+        updatedPayload.amount = 0;
+      }
+
+      if (name == "amount") {
+        //<-- this just checks if the user is changing the amount and thne sets the new cost
+        const { currency } = updatedPayload;
+        let newCostZAR = 0;
+
+        switch (
+          currency //<-- the switch deternmines the cost change depending on the element they chose
+        ) {
+          case "h2":
+            newCostZAR = value * 350;
+            break;
+          case "li":
+            newCostZAR = value * 450;
+            break;
+          case "pd":
+            newCostZAR = value * 550;
+            break;
+          case "xe":
+            newCostZAR = value * 650;
+            break;
+          default:
+            newCostZAR = 0;
+        }
+        setCostZAR(newCostZAR); //<-- sets the new cost
+      }
+      return updatedPayload; //<-- returns the updated payload
+    });
   }; //<-- just requires that the fielsd have both a name and value attribute, alongside the onchange calling this handler.
 
   return (
@@ -74,7 +112,10 @@ const ProfileActionsComponent = (props: any) => {
                 >
                   <p>&#60; Back </p>
                 </div>
+                
+
                 {/* Example component leading to 3rd party payment option */}
+
                 {/* <a href="https://third-party-payment.com">
                   <div
                     className={[styles.button, styles.addElements].join(" ")}
@@ -83,6 +124,8 @@ const ProfileActionsComponent = (props: any) => {
                     <p>Add Elements</p>
                   </div>
                 </a> */}
+
+
                 <div
                   onClick={() => setModalOpen(true)}
                   className={[styles.button, styles.addElements].join(" ")}
@@ -152,9 +195,18 @@ const ProfileActionsComponent = (props: any) => {
                 onChange={handlePayloadChange}
                 type="number"
               />
+              <h4>
+                Total sum to pay (ZAR):{" "}
+                <span>
+                  {costZAR.toLocaleString("en-ZA", {
+                    style: "currency",
+                    currency: "ZAR",
+                  })}
+                </span>
+              </h4>
 
-              <button onClick={() => addCurrency(addPayload)}>Add</button> {/*<-- the real deal */}
-              {/* <button onClick={() => console.log(addPayload)}>Add</button> //<-- Test button */} 
+              {/* <button onClick={() => addCurrency(addPayload)}>Add</button> <-- the real deal */}
+              <button onClick={() => console.log(addPayload)}>Add</button>{" "}{/* <-- Test button */}
 
               <button onClick={() => setModalOpen(false)}>Close</button>
             </div>
