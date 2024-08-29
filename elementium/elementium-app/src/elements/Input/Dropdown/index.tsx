@@ -48,7 +48,7 @@ export const DropdownEl: React.FC<DropdownElProps> = ({
       value: "2",
     },
     {
-      label: "Palladun",
+      label: "Palladium",
       value: "3",
     },
     {

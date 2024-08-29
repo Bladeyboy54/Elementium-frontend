@@ -39,6 +39,8 @@ export const Transactions = () => {
 
           <TransActionComponent/>
 
+ {/* #region Transcaction History */}
+
           {/* ////////////////////Transaction History///////////////////////// */}
 
           <div className="transactionHistory">
@@ -66,7 +68,7 @@ export const Transactions = () => {
     </>
     
     
-    
+    //#endregion
     
   );
 };
