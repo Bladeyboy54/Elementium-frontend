@@ -34,7 +34,7 @@ html, body {
     
 }
 
-.mainBody{
+.transactionMainBody{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -43,7 +43,7 @@ html, body {
     align-items: center;
 }
 
-.userOverviewPlaque{
+.transactionUserOverviewPlaque{
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -54,7 +54,7 @@ html, body {
 
 }
 
-.plaqueAddon{
+.transactionPlaqueAddon{
     display: flex;
     background-color: #CCC1E0;
     width: 200px;
@@ -64,7 +64,7 @@ html, body {
 
 }
 
-.plaqueInfo{
+.transactionPlaqueInfo{
     display: flex;
     flex-direction: column;
     margin-left: -10%;
@@ -76,15 +76,15 @@ html, body {
     }
 }
 
-.usernameText{
+.transactionUsernameText{
     font-weight: bold;
 }
 
-.accountDate{
+.transactionAccountDate{
     margin-top: -20px;
 }
 
-.logoNoText{
+.logoNoText-transaction{
     margin-left: auto;
     margin-right: 5%;
 }
@@ -131,7 +131,7 @@ html, body {
     }
 }
 
-.columnTitles{
+.transactionColumnTitles{
     display: flex;
     flex-direction: row;
     width: 98%;
@@ -147,7 +147,7 @@ html, body {
         padding: 0;
     }
 }
-.scrollHistory{
+.transactionScrollHistory{
     display: flex;
     flex-direction: column;
     gap: 0.5vh;

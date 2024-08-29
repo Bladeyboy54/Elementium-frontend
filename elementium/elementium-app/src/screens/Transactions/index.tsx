@@ -20,18 +20,18 @@ export const Transactions = () => {
           <div className="filler-line"></div>
         </div>
 
-        <div className="mainBody">
+        <div className="transactionMainBody">
 
 
           {/* //////////////////////Plaque Section/////////////////// */}
-          <div className="userOverviewPlaque">
-            <div className="plaqueAddon"></div>
-            <div className="plaqueInfo">
-              <p><span className="usernameText">Felix</span> King</p>
+          <div className="transactionUserOverviewPlaque">
+            <div className="transactionPlaqueAddon"></div>
+            <div className="transactionPlaqueInfo">
+              <p><span className="transactionUsernameText">Felix</span> King</p>
               <h3>5355 **** **** 2546</h3>
-              <span className="accountDate">08/26</span>
+              <span className="transactionAccountDate">08/26</span>
             </div>
-                <img className="logoNoText" src={logoNoText} alt="atom" />
+                <img className="logoNoText-transaction" src={logoNoText} alt="atom" />
           </div>
           {/* //////////////////////End Plaque Section/////////////////// */}
 
@@ -39,24 +39,26 @@ export const Transactions = () => {
 
           <TransActionComponent/>
 
+ {/* #region Transcaction History */}
+
           {/* ////////////////////Transaction History///////////////////////// */}
 
           <div className="transactionHistory">
             <div className="transactionHistoryBlock">
               <h2>Transaction History</h2>
-              <div className="columnTitles">
-                  <p>Type</p>
-                  <p>Recipient</p>
-                  <p>Amount</p>
-                </div>
-                <div className="scrollHistory">
-                  <TransHistoryCardComponent type="sent" recipient="1234" amount="14058" />
-                  <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
-                  <TransHistoryCardComponent type="withdrew" recipient="1234" amount="14058" />
-                  <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
-                  <TransHistoryCardComponent type="sent" recipient="1234" amount="14058" />
-                  <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
-                </div>
+              <div className="transactionColumnTitles">
+                <p>Type</p>
+                <p>Recipient</p>
+                <p>Amount</p>
+              </div>
+              <div className="transactionScrollHistory">
+                <TransHistoryCardComponent type="sent" recipient="1234" amount="14058" />
+                <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
+                <TransHistoryCardComponent type="withdrew" recipient="1234" amount="14058" />
+                <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
+                <TransHistoryCardComponent type="sent" recipient="1234" amount="14058" />
+                <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
+              </div>
             </div>
           </div>
 
@@ -66,7 +68,7 @@ export const Transactions = () => {
     </>
     
     
-    
+    //#endregion
     
   );
 };

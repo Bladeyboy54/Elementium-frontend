@@ -1,0 +1,95 @@
+
+
+.adminPage{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+}
+.pageTitleBox{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    font-family: Spectral;
+    color: #B1B98E;
+    align-items: center;
+    h1{
+        font-size: 40px;
+    }
+}
+
+.filler-line{
+    display: flex;
+    height: 10%;
+    min-width: 20%;
+    flex-grow: 1;
+    border: 0 solid #1E1E1E;
+    border-bottom-width: 1px;
+    margin-left: 10px;
+    
+}
+
+
+.adminUsersTable{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3%;
+    width: 100%;
+    min-height: 10%;
+    flex-grow: 1;
+    max-height: 90%;
+    color: #EDF2D6;
+    font-family: Spectral;
+}
+
+.adminUsersTableBlock{
+    display: flex;
+    flex-direction: column;
+    /* min-height: 20%; */
+    flex-grow: 1;
+    max-height: 100%;
+    width: 90%;
+    padding-left: 2%;
+    padding-right: 2%;
+    border: 2px solid #161616;
+    border-radius: 20px;
+    justify-content: flex-start;
+
+
+
+    h2{
+        padding: 0;
+        margin: 0;
+        margin-top: 2%;
+        font-size: 36px;
+    }
+}
+
+.adminUsersTableTitles{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 98%;
+    justify-content: space-between;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-right: 2%;
+    p{
+        /* flex-grow: 1; */
+        font-size: 12px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: 100;
+        margin: 0;
+        padding: 0;
+    }
+}
+.adminUsersTableScroll{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100%;
+}
