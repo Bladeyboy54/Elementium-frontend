@@ -1,34 +1,49 @@
+import axios from "axios";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
+const url = (endpoint: string): string => {
+  return "http://localhost:5138/api/" + endpoint;
+};
+
 export interface User {
-  id: number;
+  id?: number;
   email: string;
   username: string;
-  avatar: string;
+  avatar?: string;
   role: "user" | "admin" | "";
+  createdAt?: string;
+}
+
+export interface NewUser extends User {
+  password: string;
 }
 
 // Shape of context
 interface AuthContextType {
-  userLoggedIn: User;
+  onboardingEmail: string | null;
+  onboardingName: string | null;
+  userLoggedIn: User | null;
   isAuthenticated: boolean;
   hasPermission: boolean;
-  createAccount: (userForm: ILoginFormType) => Promise<IFeedback>;
+  createAccount: (newUserForm: NewUser) => Promise<IFeedback>;
   login: (userForm: ILoginFormType) => Promise<IFeedback>;
   approveOTP: (otp: number) => Promise<IFeedback>;
+  setUserLoggedIn: (user: User | null) => void;
   setPermission: (permission: boolean) => void;
+  setOnboardingEmail: (email: string | null) => void;
+  setOnboardingName: (name: string | null) => void;
   logout: () => void;
 }
 
 interface ILoginFormType {
-  email: string;
-  password: string;
+  Email: string;
+  Password: string;
 }
 
 export interface IFeedback {
   type: number;
-  status: "Success" | "Warning" | "Error";
-  message: string;
+  status: "Success" | "Warning" | "Error" | null;
+  message: string | null;
   body?: any;
 }
 
@@ -48,26 +63,67 @@ export const useAuth = (): AuthContextType => {
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  // const [userLoggedIn, setUserLoggedIn] = useState<User>({});
+  const [onboardingEmail, setOnboardingEmail] = useState<string | null>(null);
+  const [onboardingName, setOnboardingName] = useState<string | null>("");
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [hasPermission, setHasPermission] = useState<boolean>(false);
-  const [userLoggedIn, setLoggedIn] = useState<User>({
+  const [userLoggedIn, setUserLoggedIn] = useState<User | null>({
     id: 1,
     email: "",
     username: "",
     avatar: "",
     role: "",
   });
+  let feedback: IFeedback = {
+    type: 0,
+    status: null,
+    message: "",
+  };
 
-  const createAccount = async (
-    userForm?: ILoginFormType
-  ): Promise<IFeedback> => {
-    // TODO: Verify with backend userForm details
+  const sendOTP = async (userForm: any) => {
     try {
+      const response = await axios.post(url("OTP/send-code"), {
+        email: userForm?.email,
+      });
+
+      if (response.status === 200) {
+        feedback = {
+          ...feedback,
+          body: response.data,
+        };
+      } else {
+        feedback = {
+          type: response.status,
+          status: "Error",
+          message: `Unexpected response status: ${response.status}`,
+        };
+      }
+    } catch (error) {
+      feedback = {
+        type: 500,
+        status: "Error",
+        message: error instanceof Error ? error.message : "Unknown error",
+      };
+    }
+  };
+
+  const createAccount = async (newUserForm?: NewUser): Promise<IFeedback> => {
+    // Post newUserForm to backend
+    const response = await axios.post(url("Register"), newUserForm);
+    const res: User = response.data[0];
+
+    // If the response contains an email, send the OTP
+    if (res.email) {
+      await sendOTP(res); // Ensure sendOTP is awaited within an async function
+    }
+
+    try {
+      sessionStorage.setItem("user", JSON.stringify(res));
       const feedback: IFeedback = {
         type: 200,
         status: "Success",
         message: "Register successful",
+        body: res,
       };
       return feedback;
     } catch (error) {
@@ -75,32 +131,55 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         type: 500,
         status: "Error",
         message: "Register failed",
+        body: error,
       };
       return feedback;
     }
   };
 
   const login = async (userForm?: ILoginFormType): Promise<IFeedback> => {
-    // TODO: Verify with backend userForm details
+    const response = await axios.post(url("Login"), userForm);
+    const res: any = response.data.body;
+    console.log(res);
+
+    // If the response contains an email, send the OTP
+    if (res) {
+      await sendOTP(res); // Ensure sendOTP is awaited within an async function
+      setOnboardingName(res.username);
+      setUserLoggedIn(res);
+    } else {
+      const feedback: IFeedback = {
+        type: 500, // Return the actual status code if available
+        status: "Error",
+        message: "Login failed because OTP not sent",
+        body: {}, // Include response data if available
+      };
+      return feedback;
+    }
+
     try {
       const feedback: IFeedback = {
         type: 200,
         status: "Success",
         message: "Login successful",
+        body: res,
       };
       return feedback;
-    } catch (error) {
+    } catch (error: any) {
+      // Log the error for debugging purposes
+      console.error("Login error:", error);
+
       const feedback: IFeedback = {
-        type: 500,
+        type: 500, // Return the actual status code if available
         status: "Error",
         message: "Login failed",
+        body: error?.response?.data || error, // Include response data if available
       };
       return feedback;
     }
   };
 
   const approveOTP = async (otp: number): Promise<IFeedback> => {
-    sessionStorage.setItem("user", JSON.stringify(userLoggedIn));
     // TODO: Permissions based on user role after login
     // TODO: Communicate with backend before setting authenticated to true
     try {
@@ -135,6 +214,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <AuthContext.Provider
       value={{
+        onboardingEmail,
+        onboardingName,
         userLoggedIn,
         isAuthenticated,
         hasPermission,
@@ -142,7 +223,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         login,
         logout,
         approveOTP,
+        setUserLoggedIn,
         setPermission,
+        setOnboardingEmail,
+        setOnboardingName,
       }}
     >
       {children}

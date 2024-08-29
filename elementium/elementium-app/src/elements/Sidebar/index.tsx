@@ -6,12 +6,13 @@ import { SectionNavigation } from "./sections/sectionNavigation";
 import { SectionUserInfo } from "./sections/sectionUserInfo";
 
 export const Sidebar = () => {
+  const { userLoggedIn } = useAuth();
   return (
     <div className="sidebar-wrap">
       <SectionLogo />
       <div className="sidebar-wrap-inner">
         <SectionNavigation />
-        <SectionUserInfo />
+        <SectionUserInfo username={userLoggedIn?.username} />
       </div>
     </div>
   );

@@ -23,4 +23,17 @@
 .text-body {
   font-size: 0.825rem;
   font-family: "Satoshi";
+  line-height: 140%;
+}
+
+.form-error {
+  color: #e5acac;
+  font-size: 0.825rem;
+  font-family: "Satoshi";
+  line-height: 140%;
+  background: #492f2f1a;
+  /* border: 1px solid #e5acac31; */
+  padding: 10px 15px;
+  border-radius: 20px;
+  width: fit-content;
 }

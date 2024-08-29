@@ -6,31 +6,49 @@ import Button from "../../../elements/Input/Button";
 import { Form } from "../../../elements/Input/Form";
 import { OnboadingTemplate } from "../../../utility/ui/OnboardingTemplate/index-onboading-template";
 import { useNavigate } from "react-router-dom";
-import { TbMail, TbUser, TbLock } from "react-icons/tb";
+import { TbMail, TbLock } from "react-icons/tb";
 
 interface IUserForm {
-  email: string;
-  password: string;
+  Email: string;
+  Password: string;
 }
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, setOnboardingEmail } = useAuth();
   const [userForm, setUserForm] = useState<IUserForm>({
-    email: "",
-    password: "",
+    Email: "",
+    Password: "",
   });
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const goToOTP = async () => {
-    let loginResponse = await login(userForm);
+    setIsLoading(true);
+    try {
+      setOnboardingEmail(userForm.Email);
+      let loginResponse = await login(userForm);
 
-    // Ensure loginResponse is not void
-    if (loginResponse.type === 200) {
-      navigate("/onboarding/otp");
+      // Handle successful response
+      if (loginResponse.type === 200) {
+        console.log("Login successful:", loginResponse);
+        navigate("/onboarding/otp");
+      } else {
+        // Handle specific cases like unauthorized or other errors
+        console.error("Login failed with response:", loginResponse);
+      }
+    } catch (error: any) {
+      setIsLoading(false);
+      // Catch any network errors or unexpected issues
+      const feedback = error;
+      setFeedbackMessage(feedback.response.data.message);
+      console.error(feedback);
     }
   };
 
-  useEffect(() => {}, [userForm]);
+  useEffect(() => {
+    console.log(userForm);
+  }, [userForm, isLoading, feedbackMessage]);
 
   const subheading = (
     <div className="login-subheading">
@@ -48,28 +66,39 @@ export const Login = () => {
     <Form
       heading="Login"
       customSubheading={subheading}
-      submitButton={<Button onClick={goToOTP}>Login</Button>}
+      submitButton={
+        <Button onClick={goToOTP}>{isLoading ? "Wait..." : "Login"}</Button>
+      }
       style={{ width: "360px", gap: "40px" }}
     >
+      {feedbackMessage && <div className="form-error">{feedbackMessage}</div>}
       <InputFieldText
+        isRequired={true}
         type="text"
         placeholder="Email"
         widthWrap="-webkit-fill-available"
         icon={<TbMail />}
+        onChange={(e) => {
+          setUserForm({ ...userForm, Email: e });
+          setFeedbackMessage(null);
+        }}
       />
       <InputFieldText
+        isRequired
         type="password"
         placeholder="Enter password"
         widthWrap="-webkit-fill-available"
         icon={<TbLock />}
+        onChange={(e) => {
+          setUserForm({ ...userForm, Password: e });
+          setFeedbackMessage(null);
+        }}
       />
     </Form>
   );
 
   return (
     <div className="login">
-      {/* Login{userForm.email}
-       */}
       <OnboadingTemplate pageHeading="Welcome back." form={LoginForm} />
     </div>
   );

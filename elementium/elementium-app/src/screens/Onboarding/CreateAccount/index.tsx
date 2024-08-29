@@ -5,32 +5,32 @@ import { Form } from "../../../elements/Input/Form";
 import Button from "../../../elements/Input/Button";
 import { OnboadingTemplate } from "../../../utility/ui/OnboardingTemplate/index-onboading-template";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../utility/global/auth/authProvider";
+import { NewUser, useAuth } from "../../../utility/global/auth/authProvider";
 import { TbMail, TbUser, TbLock } from "react-icons/tb";
-
-interface IUserForm {
-  email: string;
-  password: string;
-}
 
 export const CreateAccount = () => {
   const navigate = useNavigate();
-  const { createAccount } = useAuth();
+  const { createAccount, setOnboardingEmail, setOnboardingName } = useAuth();
   const goToOTP = async () => {
-    let newAccResponse = await createAccount(userForm);
+    setOnboardingName(newUserForm.username);
+    setOnboardingEmail(newUserForm.email);
+    let newAccResponse = await createAccount(newUserForm);
 
-    // Ensure loginResponse is not void
     if (newAccResponse.type === 200) {
       navigate("/onboarding/otp");
     }
   };
 
-  const [userForm, setUserForm] = useState<IUserForm>({
+  const [newUserForm, setNewUserForm] = useState<NewUser>({
     email: "",
+    username: "",
+    role: "user",
     password: "",
   });
 
-  useEffect(() => {}, [userForm]);
+  useEffect(() => {
+    console.log(newUserForm);
+  }, [newUserForm]);
 
   const subheading = (
     <div className="create-acc-subheading text-body">
@@ -56,12 +56,14 @@ export const CreateAccount = () => {
         placeholder="Username"
         widthWrap="-webkit-fill-available"
         icon={<TbUser />}
+        onChange={(e) => setNewUserForm({ ...newUserForm, username: e })}
       />
       <InputFieldText
         type="text"
         placeholder="Email"
         widthWrap="-webkit-fill-available"
         icon={<TbMail />}
+        onChange={(e) => setNewUserForm({ ...newUserForm, email: e })}
       />
       <InputFieldText
         type="password"
@@ -74,6 +76,7 @@ export const CreateAccount = () => {
         placeholder="Re-enter password"
         widthWrap="-webkit-fill-available"
         icon={<TbLock />}
+        onChange={(e) => setNewUserForm({ ...newUserForm, password: e })}
       />
     </Form>
   );
