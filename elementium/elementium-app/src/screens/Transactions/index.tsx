@@ -13,21 +13,31 @@ export const Transactions = () => {
 
   const { userLoggedIn } = useAuth()
 
+  const transactions = [ 
+    //-----------------DUMMY DATA-----------------\\
+    { type: "sent", recipient: "1234", amount: "14058" },
+    { type: "transfer", recipient: "5678", amount: "3250" },
+    { type: "withdrew", recipient: "1234", amount: "14058" },
+    { type: "transfer", recipient: "5678", amount: "3250" },
+    { type: "sent", recipient: "1234", amount: "14058" },
+    { type: "transfer", recipient: "5678", amount: "10000" },
+  ]
+
   useEffect(() => {
     fetchUserData(userLoggedIn).then((data) => {
-      setUser(data);
+      setUser(data.$values[0]);
       setTimeout(() => setLoading(false), 1000);
       
     });
   }, [fetchUserData]);
 
-  console.log("USER ID ===>", user)
+  // console.log("USER ID ===>", user)
   return(
 
     <>
       <div className="transactionsPage">
 
-        {/* ////////////////////////Page Title Box////////////////////////////////////// */}
+        {/* -----------------Page Title Box----------------- */}
                 
         <div className="pageTitleBox">
           
@@ -38,7 +48,7 @@ export const Transactions = () => {
         <div className="transactionMainBody">
 
 
-          {/* //////////////////////Plaque Section/////////////////// */}
+          {/* -----------------Plaque Section----------------- */}
           <div className="transactionUserOverviewPlaque">
             <div className="transactionPlaqueAddon"></div>
             {/* <div className="transactionPlaqueInfo">
@@ -83,15 +93,15 @@ export const Transactions = () => {
           </div>
 
           
-          {/* //////////////////////End Plaque Section/////////////////// */}
+          {/* -----------------End Plaque Section----------------- */}
 
-          {/* /////////////////////Transactions Actions//////////////////// */}
+          {/* -----------------Transactions Actions----------------- */}
 
           <TransActionComponent/>
 
  {/* #region Transcaction History */}
 
-          {/* ////////////////////Transaction History///////////////////////// */}
+          {/* -----------------Transaction History----------------- */}
 
           <div className="transactionHistory">
             <div className="transactionHistoryBlock">
@@ -102,12 +112,15 @@ export const Transactions = () => {
                 <p>Amount</p>
               </div>
               <div className="transactionScrollHistory">
-                <TransHistoryCardComponent type="sent" recipient="1234" amount="14058" />
-                <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
-                <TransHistoryCardComponent type="withdrew" recipient="1234" amount="14058" />
-                <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
-                <TransHistoryCardComponent type="sent" recipient="1234" amount="14058" />
-                <TransHistoryCardComponent type="transfer" recipient="5678" amount="3250" />
+                {transactions.map((transaction, index) => (
+                  <TransHistoryCardComponent
+                    key={index}
+                    type={transaction.type}
+                    recipient={transaction.recipient}
+                    amount={transaction.amount}
+                  />
+                ))}
+                
               </div>
             </div>
           </div>

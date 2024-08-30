@@ -19,11 +19,11 @@ export const fetchUserData = async (userLoggedIn) => {
     const data = await response.json();
 
 
-    // let cardNumbers = Math.random().toString().slice(2, 18); //<-- small silly little add on to show show card numbers
-    // data = {
-    //   ...data,
-    //   cardNumbers: cardNumbers
-    // }
+    let cardNumbers = Math.random().toString().slice(2, 18); //<-- small silly little add on to show show card numbers
+    data.$values[0] = {
+      ...data.$values[0],
+      cardNumbers: cardNumbers
+    }
     
     
 
