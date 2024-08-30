@@ -6,23 +6,29 @@
   //    "email": "john@mail.com"
   //    }
 
-export const fetchData = async (props) => {
+export const fetchUserData = async (userLoggedIn) => {
 
-    // let randomId = Math.floor(Math.random() * 3) + 36;
-    let randomId = 1;
-
-    let userId = props && typeof props !== "undefined" ? props : randomId;
+    let randomId = 1; // <-- this is a dummy id to demo with
+    let userId = userLoggedIn && typeof userLoggedIn !== "undefined" ? userLoggedIn.userId : randomId;
     
   try {
     const response = await fetch(`http://localhost:5138/api/UsersInfo/${userId}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const data = await response.json();
+    let data = await response.json();
+
+
+    let cardNumbers = Math.random().toString().slice(2, 18); //<-- small silly little add on to show show card numbers
+    data = {
+      ...data,
+      cardNumbers: cardNumbers
+    }
+    
     return data;
   } catch (error) {
     console.error("Fetch error:", error);
-    return {username: "dummy", email: "dummy"} //<-- this type of error handling is pretty bad, but due to react's dev environment crashing
+    return {username: "Felix", email: "King"} //<-- this type of error handling is pretty bad, but due to react's dev environment crashing
     // when an error is thrown, this is the only way to keep the app running while trying to error handle.
     // so I've taken a conditional rendering approach based on recieving this "dummy" data.
   }

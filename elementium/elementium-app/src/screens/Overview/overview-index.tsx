@@ -4,18 +4,22 @@ import ProfileActionsComponent from "../../components/ProfileComponents/ProfileA
 import TransactionHistoryCardComponent from "../../components/ProfileComponents/TransactionHistoryCardComponent/TransactionHistoryCardComponent";
 import CurrentInvestmentsComponent from "../../components/CurrentInvestmentsComponent/CurrentInvestmentsComponent";
 import styles from "./overview-styles-index.module.scss";
-import { fetchData } from "../../services/GetUser";
+import { fetchUserData } from "../../services/GetUser";
+import { useAuth } from "../../utility/global/auth/authProvider";
 
 const Overview = () => {
-  const [user, setUser] = useState<any>({username: "dummy", email: "dummy"});
+  const [user, setUser] = useState<any>({ username: "Felix", email: "King" });
   const [loading, setLoading] = useState(true);
 
+  const { userLoggedIn } = useAuth(); //<-- this declaration already retrieves all the relavant userdata, but so that it doesn't
+  // erase all the work I've already done before being informed on how to use, I'm just gonna pull the id from it to run the rest of my functionality
+
   useEffect(() => {
-    fetchData().then((data) => {
+    fetchUserData(userLoggedIn).then((data) => {
       setUser(data);
       setTimeout(() => setLoading(false), 1000);
     });
-  }, [fetchData]);
+  }, [fetchUserData]);
 
   return (
     <>
@@ -28,7 +32,7 @@ const Overview = () => {
             </div>
           ) : (
             <div className={styles.welcomeTitleSection}>
-              {user.username != "dummy" ? (
+              {user.username != "Felix" ? (
                 <h1>Welcome, {user.username}</h1>
               ) : (
                 <h1>Welcome, Mr. King</h1>
@@ -42,7 +46,7 @@ const Overview = () => {
               {/* Plaque */}
               <div className={styles.plaque}>
                 <div className={styles.tempShimmer}></div>
-                { loading ? null :
+                {loading ? null : (
                   <div className={styles.plaqueInfo}>
                     {user.username != null ? (
                       <>
@@ -52,7 +56,14 @@ const Overview = () => {
                           </span>{" "}
                           {user.email}
                         </p>
-                        <h3>5355 **** **** 2546</h3>
+                        <h3>
+                          {user.cardNumbers
+                            ? `${user.cardNumbers.slice(
+                                0,
+                                4
+                              )} **** **** ${user.cardNumbers.slice(-4)}`
+                            : "No card available"}
+                        </h3>
                         <span className={styles.plaqueDate}>08/26</span>
                       </>
                     ) : (
@@ -66,13 +77,13 @@ const Overview = () => {
                       </>
                     )}
                   </div>
-                }
+                )}
                 <img className={styles.atomImg} src={atomImg} alt="atom" />
               </div>
               {/* end of Plaque */}
 
               {/* Profile Actions Component */}
-              <ProfileActionsComponent user={user} />
+              {/* <ProfileActionsComponent user={user} /> */}
 
               {/* recent transactions */}
               <div className={styles.recentTransactions}>

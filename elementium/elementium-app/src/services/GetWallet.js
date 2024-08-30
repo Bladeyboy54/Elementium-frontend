@@ -48,7 +48,7 @@ export const GetWallet = async (userId) => {
         balance_h2: 100,
         balance_li: 100,
         balance_pd: 100,
-        balance_xe: 100
+        balance_xe: 0
     }
     return dataBody;
     // ================================================================================================================
