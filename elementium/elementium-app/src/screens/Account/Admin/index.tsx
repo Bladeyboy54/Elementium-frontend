@@ -1,52 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import AdminUsersTable from "./adminUsersTable/adminUsersTable";
+import { getAllUsers } from "../../../services/getAllUsers";
 
 export const Admin = () => {
 
+  const [accountHolder, setAccountHolder] = useState<any[]>([]);
 
-  return (
-    <>
-      <div className="adminPage">
-        
+  useEffect(() => {
+    getAllUsers().then((data) => {
+      console.log(data);
+      setAccountHolder(data.$values || []);
+    });
+  }, []);
 
-        {/* ///////////////////// Page Title Box ///////////////////// */}
-        <div className="pageTitleBox">
-          <h1>Account Holders</h1>
-          <div className="filler-line" />
-        </div>
+return (
+  <>
+    <div className="adminPage">
 
-        <div className="adminUsersTable">
-          <div className="adminUsersTableBlock">
-            <h2>Users</h2>
-            <div className="adminUsersTableTitles">
-              <p>#</p>
-              <p>Name</p>
-              <p>User ID</p>
-              <p>Login</p>
-              <p>Acc Type</p>
-              <p>Admin Action</p>
-            </div>
-            <div className="adminUsersTableScroll">
-              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
-              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
-              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
-              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="active"/>
-              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
-              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="active"/>
-              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
-              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
-              <AdminUsersTable id="1" name="Darlene Robertson" userID="2798" login="27/08/24" accType="Reactive" adminAction="inactive"/>
-            </div>
+
+      {/* ///////////////////// Page Title Box ///////////////////// */}
+      <div className="pageTitleBox">
+        <h1>Account Holders</h1>
+        <div className="filler-line" />
+      </div>
+
+      <div className="adminUsersTable">
+        <div className="adminUsersTableBlock">
+          <h2>Users</h2>
+          <div className="adminUsersTableTitles">
+            <p>#</p>
+            <p>Name</p>
+            <p>User ID</p>
+            <p>Login</p>
+            <p>Acc Type</p>
+            <p>Admin Action</p>
+          </div>
+          <div className="adminUsersTableScroll">
+          {accountHolder.length > 0 ? (
+                accountHolder.map((item, index) => (
+                  <AdminUsersTable 
+                    key={index}  // Use a unique key
+                    id={item.$id} 
+                    name={item.username} 
+                    userID={item.userId} 
+                    login={item.created_at} 
+                    accType={item.account.accountStatusId} 
+                    adminAction="inactive" 
+                  />
+                ))
+              ) : (
+                <p>No users found.</p>
+              )}            
           </div>
         </div>
+      </div>
 
 
 
 
 
-      </div>    
-    </>
-  )
+    </div>
+  </>
+)
   
 };
