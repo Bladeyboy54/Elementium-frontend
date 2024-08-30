@@ -18,8 +18,11 @@ const Overview = () => {
     fetchUserData(userLoggedIn).then((data) => {
       setUser(data);
       setTimeout(() => setLoading(false), 1000);
+      console.log("USER ID OVerview ===>", user)
     });
   }, [fetchUserData]);
+
+  
 
   return (
     <>

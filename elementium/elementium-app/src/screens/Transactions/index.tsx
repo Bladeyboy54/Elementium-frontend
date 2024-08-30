@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import logoNoText from "../../assets/logo-notext-black.svg";
 import TransActionComponent from "./TransActionComponent/TransActionComponent";
 import TransHistoryCardComponent from "./TransHistoryCardComponent/TransHistoryCardComponent";
-
+import { fetchUserData } from "../../services/GetUser";
+import { useAuth } from "../../utility/global/auth/authProvider";
 
 export const Transactions = () => {
 
+  const [user, setUser] = useState<any>({ username: "Felix", email: "King" });
+  const [loading, setLoading] = useState(true);
 
+  const { userLoggedIn } = useAuth()
+
+  useEffect(() => {
+    fetchUserData(userLoggedIn).then((data) => {
+      setUser(data);
+      setTimeout(() => setLoading(false), 1000);
+      
+    });
+  }, [fetchUserData]);
+
+  console.log("USER ID ===>", user)
   return(
 
     <>
       <div className="transactionsPage">
 
         {/* ////////////////////////Page Title Box////////////////////////////////////// */}
+                
         <div className="pageTitleBox">
           
           <h1>Transactions</h1> 
@@ -26,13 +41,48 @@ export const Transactions = () => {
           {/* //////////////////////Plaque Section/////////////////// */}
           <div className="transactionUserOverviewPlaque">
             <div className="transactionPlaqueAddon"></div>
-            <div className="transactionPlaqueInfo">
+            {/* <div className="transactionPlaqueInfo">
               <p><span className="transactionUsernameText">Felix</span> King</p>
               <h3>5355 **** **** 2546</h3>
               <span className="transactionAccountDate">08/26</span>
             </div>
-                <img className="logoNoText-transaction" src={logoNoText} alt="atom" />
+                 */}
+            {loading ? null: (
+              <div className="transactionPlaqueInfo">
+                {user.username != null ? (
+                  <>
+                    <p>
+                      <span className="transactionUsernameText">
+                        {user.username}
+                      </span>{" "}
+                    </p>
+                    <h3>
+                      {user.cardNumbers
+                        ? `${user.cardNumbers.slice(
+                            0,
+                            4
+                          )} **** **** ${user.cardNumbers.slice(-4)}`
+                        : "No card available"}
+                    </h3>
+                    <span className="transactionAccountDate">08/26</span>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      <span className="transactionUsernameText">Felix</span> King
+                    </p>
+
+                    <h3>5355 **** **** 2546</h3>
+                    <span className="transactionAccountDate">08/26</span>
+                  </>
+                )}
+              </div>
+            )}
+
+            <img className="logoNoText-transaction" src={logoNoText} alt="atom" />
           </div>
+
+          
           {/* //////////////////////End Plaque Section/////////////////// */}
 
           {/* /////////////////////Transactions Actions//////////////////// */}

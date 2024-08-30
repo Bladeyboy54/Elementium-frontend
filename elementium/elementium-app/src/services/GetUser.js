@@ -16,20 +16,22 @@ export const fetchUserData = async (userLoggedIn) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    let data = await response.json();
+    const data = await response.json();
 
 
-    let cardNumbers = Math.random().toString().slice(2, 18); //<-- small silly little add on to show show card numbers
-    data = {
-      ...data,
-      cardNumbers: cardNumbers
-    }
+    // let cardNumbers = Math.random().toString().slice(2, 18); //<-- small silly little add on to show show card numbers
+    // data = {
+    //   ...data,
+    //   cardNumbers: cardNumbers
+    // }
     
+    
+
     return data;
   } catch (error) {
     console.error("Fetch error:", error);
     return {username: "Felix", email: "King"} //<-- this type of error handling is pretty bad, but due to react's dev environment crashing
     // when an error is thrown, this is the only way to keep the app running while trying to error handle.
     // so I've taken a conditional rendering approach based on recieving this "dummy" data.
-  }
+   }
 };
