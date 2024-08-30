@@ -12,13 +12,17 @@ const TransActionComponent = () => {
 
     const handlePaymentClick = () => {
         setIsOverlayPayCardVisible(true);
-      };
+    };
     
-      const closeInputCard = () => {
+    const closeInputCard = () => {
         setIsOverlayPayCardVisible(false);
-      };
+    };
 
+    const submitPayment = () => {
+        // add Logic for making payment here
 
+        console.log("Payment has been made ")
+    }
     return(
         <>
             <div className={styles.main}>
@@ -47,7 +51,7 @@ const TransActionComponent = () => {
 
             </div>
         </div>
-            <OverlayPayCard isVisible={isOverlayPayCardVisible} onClose={closeInputCard} />
+            <OverlayPayCard isVisible={isOverlayPayCardVisible} onClose={closeInputCard} submitPayment={submitPayment}/>
         </>
     )
 }

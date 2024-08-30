@@ -26,12 +26,12 @@ export const Transactions = () => {
   useEffect(() => {
     fetchUserData(userLoggedIn).then((data) => {
       setUser(data.$values[0]);
-      setTimeout(() => setLoading(false), 1000);
+      setTimeout(() => setLoading(false), 500);
       
     });
   }, [fetchUserData]);
 
-  // console.log("USER ID ===>", user)
+  console.log("USER ID ===>", user)
   return(
 
     <>
