@@ -35,13 +35,14 @@ export const Login = () => {
         navigate("/onboarding/otp");
       } else {
         // Handle specific cases like unauthorized or other errors
+        setFeedbackMessage(loginResponse.message);
         console.error("Login failed with response:", loginResponse);
       }
     } catch (error: any) {
       setIsLoading(false);
       // Catch any network errors or unexpected issues
       const feedback = error;
-      setFeedbackMessage(feedback.response.data.message);
+      setFeedbackMessage(feedback?.response?.data?.message);
       console.error(feedback);
     }
   };
