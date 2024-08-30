@@ -5,24 +5,41 @@ import transferIcon from "../../../assets/icons/Transfer.svg";
 import withdrawIcon from "../../../assets/icons/download.svg";
 import moreIcon from "../../../assets/icons/more_horiz.svg";
 import OverlayPayCard from "../OverlayInputCard/OverlayPayCard/OverlayPayCard";
+import OverlayWithdrawCard from "../OverlayInputCard/OverlayWithdrawCard/OverlayWithdrawCard";
 
 const TransActionComponent = () => {
 
     const [isOverlayPayCardVisible, setIsOverlayPayCardVisible] = useState(false);
+    const [isOverlayWithdrawCardVisible, setIsOverlayWithdrawCardVisible] = useState(false);
 
-    const handlePaymentClick = () => {
+    const handlePaymentCardOpen = () => {
         setIsOverlayPayCardVisible(true);
     };
     
-    const closeInputCard = () => {
+    const handlePaymentCardClose = () => {
         setIsOverlayPayCardVisible(false);
     };
 
-    const submitPayment = () => {
+    const handleSubmitPayment = () => {
         // add Logic for making payment here
 
         console.log("Payment has been made ")
     }
+
+    const handleWithdrawCardOpen = () =>{
+        setIsOverlayWithdrawCardVisible(true)
+    };
+
+    const handleWithdrawCardClose = () => {
+        setIsOverlayWithdrawCardVisible(false);
+    };
+
+    const handleSubmitWithdraw = () => {
+        // add Logic for making payment here
+
+        console.log("Withdrawal has been made ")
+    }
+
     return(
         <>
             <div className={styles.main}>
@@ -30,15 +47,15 @@ const TransActionComponent = () => {
 
                 {/* actions */}
                 <div className={styles.actions}>
-                        <div className={[styles.button, styles.sendButton].join(' ')} onClick={handlePaymentClick}>
+                        <div className={[styles.button, styles.sendButton].join(' ')} onClick={handlePaymentCardOpen}>
                             <img src={payIcon} /><p>Send</p>
                         </div>
 
-                        <div className={[styles.button, styles.receiveButton].join(' ')}>
+                        <div className={[styles.button, styles.receiveButton].join(' ')} >
                             <img src={transferIcon} /><p>Transfer</p>
                         </div>
 
-                        <div className={[styles.button, styles.withdrawButton].join(' ')}>
+                        <div className={[styles.button, styles.withdrawButton].join(' ')} onClick={handleWithdrawCardOpen}>
                             <img src={withdrawIcon} /><p>Withdraw</p>
                         </div>
 
@@ -51,7 +68,8 @@ const TransActionComponent = () => {
 
             </div>
         </div>
-            <OverlayPayCard isVisible={isOverlayPayCardVisible} onClose={closeInputCard} submitPayment={submitPayment}/>
+            <OverlayPayCard isVisible={isOverlayPayCardVisible} onClose={handlePaymentCardClose} submitPayment={handleSubmitPayment}/>
+            <OverlayWithdrawCard isVisible={isOverlayWithdrawCardVisible} onClose={handleWithdrawCardClose} submitWithdraw={handleSubmitWithdraw}/>
         </>
     )
 }

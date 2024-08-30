@@ -45,8 +45,8 @@ return (
                     name={item.username} 
                     userID={item.userId} 
                     login={item.created_at} 
-                    accType={item.account.accountStatusId} 
-                    adminAction="inactive" 
+                    accType={item.account?.accountStatusId} 
+                    adminAction={item.account?.active} 
                   />
                 ))
               ) : (

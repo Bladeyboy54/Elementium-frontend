@@ -7,10 +7,10 @@ const AdminUsersTable = (props: any) => {
     const { id, name, userID, login, accType, adminAction } = props;
 
     const getActionButtonText = () => {
-        return adminAction === "active" ? "Disable" : "Activate";
+        return adminAction === true ? "Disable" : "Activate";
     }
     const getButtonClass = () => {
-        return adminAction === "active" ? styles.adminTbButtonActive : styles.adminTbButtonInactive;
+        return adminAction === true ? styles.adminTbButtonActive : styles.adminTbButtonInactive;
     };
 
     // const getButtonStyle = () => {
