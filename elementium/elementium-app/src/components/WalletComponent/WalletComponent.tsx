@@ -4,6 +4,9 @@ import { GetWallet } from "../../services/GetWallet";
 import ProfileActionsComponent from "../ProfileComponents/ProfileActionsComponent/ProfileActionsComponent";
 import { fetchAccountData } from "../../services/GetAccount";
 import { useAuth } from "../../utility/global/auth/authProvider";
+import { Market } from "../../screens/Market";
+import { NavLink } from "react-router-dom";
+import { levelUpAccount } from "../../services/LevelUpAccount";
 
 const WalletComponent = () => {
   const [wallet, setWallet] = useState<any>(null);
@@ -14,6 +17,7 @@ const WalletComponent = () => {
   let userId = 1;
 
   const { userLoggedIn } = useAuth();
+  console.log("LOOK HERE!!", userLoggedIn);
 
   useEffect(() => {
     GetWallet(userLoggedIn).then((data) => {
@@ -25,8 +29,88 @@ const WalletComponent = () => {
     fetchAccountData(userLoggedIn).then((data) => {
       setAccountData(data);
     });
-    
-  }, []);
+  }, [userLoggedIn, GetWallet, fetchAccountData]);
+
+  console.log("Account data In WalletComp == ", accountData);
+
+  const levelAccount = () => {
+    levelUpAccount(userLoggedIn);
+  };
+
+  const upgradeQualifier = () => {
+    switch (accountData?.accountStatusId) {
+      case 1:
+        if (
+          accountData?.balance_h2 >= accountData?.status.total_amount_criteria
+        ) {
+          return (
+            <p>
+              You're eligable for an account upgrade! Click{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                here
+              </span>{" "}
+              to claim your{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                Alkali Account
+              </span>{" "}
+              status!
+            </p>
+          );
+        } else {
+          return null;
+        }
+      case 2:
+        if (
+          accountData?.balance_li >= accountData?.status.total_amount_criteria
+        ) {
+          return (
+            <p>
+              You're eligable for an account upgrade! Click{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                here
+              </span>{" "}
+              to claim your{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                Transition Account
+              </span>{" "}
+              status!
+            </p>
+          );
+        } else {
+          return null;
+        }
+      case 3:
+        if (
+          accountData?.balance_pd >= accountData?.status.total_amount_criteria
+        ) {
+          return (
+            <p>
+              You're eligable for an account upgrade! Click{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                here
+              </span>{" "}
+              to claim your{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                Noble Account
+              </span>{" "}
+              status!
+            </p>
+          );
+        } else {
+          return null;
+        }
+      case 4:
+        return (
+          <p>
+            You've reached the final account tier: <span>Noble</span>
+          </p>
+        );
+      default:
+        return null;
+    }
+  };
+
+  console.log(accountData);
 
   return (
     <>
@@ -73,14 +157,22 @@ const WalletComponent = () => {
                   elements.
                 </p>
               ) : null}
-              {}
+              {accountData && (
+                <>
+                  <h3>Account data:</h3>
+                  {upgradeQualifier()}
+                  <p>
+                    Account type: <span className={styles.coolText}>{accountData?.status.status_name}</span>
+                  </p>
+                </>
+              )}
             </div>
             <h3>Add to your investments?</h3>
             <p>
               Head over to the{" "}
-              <a href="/market">
+              <NavLink to={"/market"}>
                 <span>market place</span>
-              </a>{" "}
+              </NavLink>
               to purchase or trade for more elements
             </p>
           </>
