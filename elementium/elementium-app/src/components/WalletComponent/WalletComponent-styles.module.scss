@@ -1,4 +1,4 @@
-*{
+* {
   padding: 0;
   margin: 0;
 }
@@ -10,6 +10,19 @@
   width: 100%;
   overflow: hidden;
   user-select: none;
+
+  .loadingHolder {
+    width: 100%;
+    height: 100%;
+
+    .loadingGif {
+      margin-left: 7vw;
+      margin-top: 7vh;
+      max-width: 3vw;
+      max-width: 3vw;
+    }
+  }
+
   .content {
     display: flex;
     flex-direction: column;
@@ -22,40 +35,48 @@
       padding: 0;
     }
 
-
-
-
     // CHATGPT HELPED ME WITH THIS: (not my code)=========================================================================
     .levelUpText {
       color: white;
       cursor: pointer;
-      background: linear-gradient(to right, #00b7ff, #ffcc00f3); /* Gradient colors */
+      background: linear-gradient(
+        to right,
+        #00b7ff,
+        #ffcc00f3
+      ); /* Gradient colors */
       -webkit-background-clip: text; /* Clips the background to the text */
       -webkit-text-fill-color: transparent; /* Makes the text itself transparent */
       text-decoration: none; /* Disable default underline if you're using ::after */
       position: relative; /* Add this for the absolute positioning of ::after */
-    
+
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         left: 0;
         bottom: 0;
         width: 100%;
         height: 2px; /* Adjust the thickness of the underline */
-        background: linear-gradient(to right, #00b7ff, #ffcc00f3); /* Gradient colors */
+        background: linear-gradient(
+          to right,
+          #00b7ff,
+          #ffcc00f3
+        ); /* Gradient colors */
       }
     }
 
     .coolText {
       color: white;
-      background: linear-gradient(to right, #f700ff, #00ff11); /* Gradient colors */
+      background: linear-gradient(
+        to right,
+        #f700ff,
+        #00ff11
+      ); /* Gradient colors */
       -webkit-background-clip: text; /* Clips the background to the text */
       -webkit-text-fill-color: transparent; /* Makes the text itself transparent */
       text-decoration: none; /* Disable default underline if you're using ::after */
       position: relative; /* Add this for the absolute positioning of ::after */
     }
     // ===================================================================================================================
-    
   }
 }
 
