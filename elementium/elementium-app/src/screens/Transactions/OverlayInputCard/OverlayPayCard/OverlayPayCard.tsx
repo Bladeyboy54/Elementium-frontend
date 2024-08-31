@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import styles from "./OverlayPayCard-styles.module.scss";
 
 const OverlayPayCard = ({
-    isVisible,
-    onClose,
-    submitPayment,
-  }: {
-    isVisible: boolean;
-    onClose: () => void;
-    submitPayment: () => void;
-  }) => {
+  isVisible,
+  onClose,
+  submitPayment,
+}: {
+  isVisible: boolean;
+  onClose: () => void;
+  submitPayment: () => void;
+}) => {
 
     const [selectedCurrency, setSelectedCurrency] = useState("Hydrogen");
     const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
@@ -41,7 +41,7 @@ const OverlayPayCard = ({
           <option>Xenon</option>
         </select> */}
 
-<div
+        <div
           className={styles.customSelect}
           onClick={() => setIsCurrencyDropdownOpen(!isCurrencyDropdownOpen)}
         >

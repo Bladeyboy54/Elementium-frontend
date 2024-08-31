@@ -44,8 +44,8 @@ const AppRoutes: React.FC = () => {
             path="/transactions"
             element={
               <PrivateRoute>
-                {/* <Transactions /> */}
-                <Admin /> 
+                <Transactions />
+                {/* <Admin />  */}
                 {/* fix this (just for testing) */}
               </PrivateRoute>
             }
