@@ -43,7 +43,7 @@ interface ILoginFormType {
 
 interface IOTPFormType {
   Email: string;
-  Otp: string;
+  Code: number;
 }
 
 export interface IFeedback {
@@ -202,6 +202,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const approveOTP = async (otpForm: IOTPFormType): Promise<IFeedback> => {
+    console.log(otpForm);
     const response: any = await axios.post(url("OTP/verify-code"), otpForm);
     const res: any = response?.data;
     console.log(response);

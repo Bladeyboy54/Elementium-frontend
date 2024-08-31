@@ -13,8 +13,8 @@ export const OTP = () => {
   const { onboardingEmail, onboardingName, userLoggedIn, approveOTP } =
     useAuth();
   const [verifyOTPForm, setVerifyOTPForm] = useState<any>({
-    Email: userLoggedIn?.Email,
-    Code: Number,
+    Email: onboardingEmail,
+    Code: "",
   });
   const username = shortenText(onboardingName!, 15);
   const navigate = useNavigate();
@@ -22,6 +22,7 @@ export const OTP = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const verifyUser = async () => {
+    console.log(verifyOTPForm?.Email);
     try {
       const verifyOTP = await approveOTP(verifyOTPForm);
       if (verifyOTP.type === 200) {
