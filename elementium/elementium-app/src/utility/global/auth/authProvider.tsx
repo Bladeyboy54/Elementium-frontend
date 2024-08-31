@@ -138,21 +138,22 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const login = async (userForm?: ILoginFormType): Promise<IFeedback> => {
-    const response = await axios.post(url("Login"), userForm);
-    const res: any = response.data.body;
+    const response: any = await axios.post(url("Login"), userForm);
+    const res: any = response?.data?.body?.$values[0];
     console.log(res);
 
     // If the response contains an email, send the OTP
     if (res) {
-      await sendOTP(res); // Ensure sendOTP is awaited within an async function
+      // await sendOTP(res); // Ensure sendOTP is awaited within an async function
       setOnboardingName(res.username);
       setUserLoggedIn(res);
     } else {
+      console.log("res: ", res);
       const feedback: IFeedback = {
         type: 500, // Return the actual status code if available
         status: "Error",
-        message: "Login failed because OTP not sent",
-        body: {}, // Include response data if available
+        message: "Unknown server error",
+        body: { res }, // Include response data if available
       };
       return feedback;
     }
