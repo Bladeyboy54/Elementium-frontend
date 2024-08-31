@@ -4,7 +4,10 @@ export const getAllUsers = async () => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const data = await response.json();    
+    const data = await response.json(); 
+
+    console.log("LOOK AT ME>>>>>>>>>>>>>>>>>", data);
+      
     return data;
   } catch (error) {
     console.error("Fetch error:", error);

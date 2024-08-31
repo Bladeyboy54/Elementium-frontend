@@ -15,7 +15,7 @@ const AdminUsersTable = (props: any) => {
         setIsOverlayHolderVisible(false);
     };
 
-    const { id, name, userID, login, accType, adminAction } = props;
+    const { id, name, userID, login, accType, adminAction, acccount } = props;
 
     const getActionButtonText = () => {
         return adminAction === true ? "Disable" : "Activate";
@@ -69,7 +69,8 @@ const AdminUsersTable = (props: any) => {
                 name={name}
                 userID={userID}
                 login={login}
-                accType={accType} />
+                accType={accType}
+                acc={acccount} />
         </>
 
     )

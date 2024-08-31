@@ -25,7 +25,7 @@ export const Transactions = () => {
 
   useEffect(() => {
     fetchUserData(userLoggedIn).then((data) => {
-      setUser(data.$values[0]);
+      setUser(data[0]);
       setTimeout(() => setLoading(false), 500);
       
     });

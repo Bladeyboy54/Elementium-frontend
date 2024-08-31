@@ -8,7 +8,8 @@ const OverlayHolderCard = ({
     name,
     userID,
     login,
-    accType
+    accType,
+    acc
 }: {
     isVisible: boolean;
     onClose: () => void;
@@ -17,9 +18,10 @@ const OverlayHolderCard = ({
     userID: string;
     login: string;
     accType: string;
+    acc: any
 }) => {
 
-    
+
 
     const [selectedCurrency, setSelectedCurrency] = useState("Hydrogen");
     const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);

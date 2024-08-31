@@ -19,7 +19,7 @@ const Overview = () => {
       console.log("USER ID OVerview ===>", data);
       setUser(data[0]);
       setTimeout(() => setLoading(false), 1000);
-      console.log("USER ID OVerview ===>", user)
+      console.log("USER ID OVerview ===>", userLoggedIn)
     });
   }, [fetchUserData]);
 
