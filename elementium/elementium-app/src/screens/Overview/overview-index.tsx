@@ -16,7 +16,8 @@ const Overview = () => {
 
   useEffect(() => {
     fetchUserData(userLoggedIn).then((data) => {
-      setUser(data.$values[0]);
+      console.log("USER ID OVerview ===>", data);
+      setUser(data[0]);
       setTimeout(() => setLoading(false), 1000);
       console.log("USER ID OVerview ===>", user)
     });

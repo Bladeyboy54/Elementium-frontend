@@ -18,7 +18,6 @@ const WalletComponent = () => {
 
   const { userLoggedIn } = useAuth();
   console.log("LOOK HERE!!", userLoggedIn);
-  
 
   useEffect(() => {
     GetWallet(userLoggedIn).then((data) => {
@@ -32,59 +31,73 @@ const WalletComponent = () => {
     });
   }, [userLoggedIn, GetWallet, fetchAccountData]);
 
-  console.log("Account data In WalletComp == ",accountData);
+  console.log("Account data In WalletComp == ", accountData);
 
   const levelAccount = () => {
     levelUpAccount(userLoggedIn);
-  }
-  
+  };
 
   const upgradeQualifier = () => {
     switch (accountData?.accountStatusId) {
       case 1:
         if (
-          accountData?.balance_h2 >=
-          accountData?.status.total_amount_criteria
+          accountData?.balance_h2 >= accountData?.status.total_amount_criteria
         ) {
           return (
             <p>
               You're eligable for an account upgrade! Click{" "}
-              <span>here</span> to claim your <span onClick={levelAccount}>Alkali Account</span>{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                here
+              </span>{" "}
+              to claim your{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                Alkali Account
+              </span>{" "}
               status!
             </p>
           );
         } else {
-         return null;
+          return null;
         }
       case 2:
         if (
-          accountData?.balance_li >=
-          accountData?.status.total_amount_criteria
+          accountData?.balance_li >= accountData?.status.total_amount_criteria
         ) {
           return (
             <p>
               You're eligable for an account upgrade! Click{" "}
-              <span>here</span> to claim your <span>Transition Account</span>{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                here
+              </span>{" "}
+              to claim your{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                Transition Account
+              </span>{" "}
               status!
             </p>
           );
         } else {
-         return null;
+          return null;
         }
       case 3:
         if (
-          accountData?.balance_pd >=
-          accountData?.status.total_amount_criteria
+          accountData?.balance_pd >= accountData?.status.total_amount_criteria
         ) {
           return (
             <p>
               You're eligable for an account upgrade! Click{" "}
-              <span>here</span> to claim your <span>Noble Account</span>{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                here
+              </span>{" "}
+              to claim your{" "}
+              <span className={styles.levelUpText} onClick={levelAccount}>
+                Noble Account
+              </span>{" "}
               status!
             </p>
           );
         } else {
-         return null;
+          return null;
         }
       case 4:
         return (
@@ -93,7 +106,7 @@ const WalletComponent = () => {
           </p>
         );
       default:
-      return null;
+        return null;
     }
   };
 
@@ -149,10 +162,10 @@ const WalletComponent = () => {
                   <h3>Account data:</h3>
                   {upgradeQualifier()}
                   <p>
-                    Account type: <span>{accountData?.status.status_name}</span>
+                    Account type: <span className={styles.coolText}>{accountData?.status.status_name}</span>
                   </p>
                 </>
-              ) }
+              )}
             </div>
             <h3>Add to your investments?</h3>
             <p>
@@ -163,7 +176,6 @@ const WalletComponent = () => {
               to purchase or trade for more elements
             </p>
           </>
-
         )}
       </div>
     </>
