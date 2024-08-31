@@ -4,8 +4,7 @@ import { Outlet } from "react-router-dom";
 
 export const Onboarding = () => {
   return (
-    <div>
-      {/* Onboarding */}
+    <div className="onboarding">
       <Outlet />
     </div>
   );

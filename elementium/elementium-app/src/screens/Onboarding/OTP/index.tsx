@@ -10,16 +10,36 @@ import { TbMedicalCrossCircle } from "react-icons/tb";
 import { shortenText } from "../../../utility/ui/shortenText";
 
 export const OTP = () => {
-  const { onboardingEmail, onboardingName, approveOTP } = useAuth();
+  const { onboardingEmail, onboardingName, userLoggedIn, approveOTP } =
+    useAuth();
   const [verifyOTPForm, setVerifyOTPForm] = useState<any>({
-    otp: Number,
+    Email: userLoggedIn?.email,
+    Code: Number,
   });
   const username = shortenText(onboardingName!, 15);
   const navigate = useNavigate();
-  const verifyUser = () => {
-    approveOTP(verifyOTPForm);
-    navigate("/");
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const verifyUser = async () => {
+    try {
+      const verifyOTP = await approveOTP(verifyOTPForm);
+      if (verifyOTP.type === 200) {
+        setFeedbackMessage(verifyOTP.message);
+        navigate("/");
+      } else {
+        console.log(verifyOTP);
+        setFeedbackMessage(verifyOTP.message);
+      }
+    } catch (error: any) {
+      console.log(error);
+      setFeedbackMessage(error?.response?.data?.message);
+    }
   };
+
+  useEffect(() => {
+    console.log(verifyOTPForm);
+  }, [verifyOTPForm]);
 
   const subheading = (
     <div className="text-body">
@@ -28,7 +48,6 @@ export const OTP = () => {
     </div>
   );
 
-  useEffect(() => {}, [verifyOTPForm]);
   const OTPForm = (
     <Form
       heading="One Time Pin"
@@ -36,12 +55,14 @@ export const OTP = () => {
       submitButton={<Button onClick={verifyUser}>Enter</Button>}
       style={{ width: "max-content", gap: "40px" }}
     >
+      {feedbackMessage && <div className="form-error">{feedbackMessage}</div>}
       <InputFieldText
         type="number"
         placeholder="Enter OTP"
         widthWrap="-webkit-fill-available"
         onChange={(e) => {
-          setVerifyOTPForm({ ...verifyOTPForm, otp: e });
+          setVerifyOTPForm({ ...verifyOTPForm, Code: e });
+          setFeedbackMessage(null);
         }}
         icon={<TbMedicalCrossCircle />}
       />
