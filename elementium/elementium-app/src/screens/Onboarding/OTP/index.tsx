@@ -8,6 +8,7 @@ import { OnboadingTemplate } from "../../../utility/ui/OnboardingTemplate/index-
 import { useAuth } from "../../../utility/global/auth/authProvider";
 import { TbMedicalCrossCircle } from "react-icons/tb";
 import { shortenText } from "../../../utility/ui/shortenText";
+import { BeatLoader } from "react-spinners";
 
 export const OTP = () => {
   const { onboardingEmail, onboardingName, userLoggedIn, approveOTP } =
@@ -53,7 +54,15 @@ export const OTP = () => {
     <Form
       heading="One Time Pin"
       customSubheading={subheading}
-      submitButton={<Button onClick={verifyUser}>Enter</Button>}
+      submitButton={
+        <Button onClick={verifyUser}>
+          {isLoading ? (
+            <BeatLoader color="#45404D" loading={true} size={8} />
+          ) : (
+            "Enter"
+          )}
+        </Button>
+      }
       style={{ width: "max-content", gap: "40px" }}
     >
       {feedbackMessage && <div className="form-error">{feedbackMessage}</div>}

@@ -12,7 +12,7 @@ export const Sidebar = () => {
       <SectionLogo />
       <div className="sidebar-wrap-inner">
         <SectionNavigation />
-        <SectionUserInfo username={userLoggedIn?.Username} />
+        <SectionUserInfo username={userLoggedIn?.username} />
       </div>
     </div>
   );

@@ -7,17 +7,16 @@ const url = (endpoint: string): string => {
 
 export interface User {
   id?: number;
-  UserId?: number;
-  Email: string;
-  email?: string;
-  Username: string;
-  Avatar?: string;
-  Role: "user" | "admin" | "";
-  Created_at?: string;
+  userId: number;
+  email: string;
+  username: string;
+  avatar?: string;
+  role: "user" | "admin" | "";
+  created_at?: string;
 }
 
 export interface NewUser extends User {
-  Password: string;
+  password: string;
 }
 
 // Shape of context
@@ -76,11 +75,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const [hasPermission, setHasPermission] = useState<boolean>(false);
   const [userLoggedIn, setUserLoggedIn] = useState<User | null>({
     id: 1,
-    UserId: 1,
-    Email: "",
-    Username: "",
-    Avatar: "",
-    Role: "",
+    userId: 1,
+    email: "",
+    username: "",
+    avatar: "",
+    role: "",
   });
   let feedback: IFeedback = {
     type: 0,
