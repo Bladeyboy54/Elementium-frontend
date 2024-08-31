@@ -6,6 +6,7 @@ import { fetchAccountData } from "../../services/GetAccount";
 import { useAuth } from "../../utility/global/auth/authProvider";
 import { Market } from "../../screens/Market";
 import { NavLink } from "react-router-dom";
+import { levelUpAccount } from "../../services/LevelUpAccount";
 
 const WalletComponent = () => {
   const [wallet, setWallet] = useState<any>(null);
@@ -29,7 +30,14 @@ const WalletComponent = () => {
     fetchAccountData(userLoggedIn).then((data) => {
       setAccountData(data);
     });
-  }, []);
+  }, [userLoggedIn, GetWallet, fetchAccountData]);
+
+  console.log("Account data In WalletComp == ",accountData);
+
+  const levelAccount = () => {
+    levelUpAccount(userLoggedIn);
+  }
+  
 
   const upgradeQualifier = () => {
     switch (accountData?.accountStatusId) {
@@ -41,7 +49,7 @@ const WalletComponent = () => {
           return (
             <p>
               You're eligable for an account upgrade! Click{" "}
-              <span>here</span> to claim your <span>Alkali Account</span>{" "}
+              <span>here</span> to claim your <span onClick={levelAccount}>Alkali Account</span>{" "}
               status!
             </p>
           );
@@ -136,7 +144,7 @@ const WalletComponent = () => {
                   elements.
                 </p>
               ) : null}
-              {/* {accountData ? (
+              {accountData && (
                 <>
                   <h3>Account data:</h3>
                   {upgradeQualifier()}
@@ -144,7 +152,7 @@ const WalletComponent = () => {
                     Account type: <span>{accountData?.status.status_name}</span>
                   </p>
                 </>
-              ) : null} */}
+              ) }
             </div>
             <h3>Add to your investments?</h3>
             <p>
@@ -155,6 +163,7 @@ const WalletComponent = () => {
               to purchase or trade for more elements
             </p>
           </>
+
         )}
       </div>
     </>
