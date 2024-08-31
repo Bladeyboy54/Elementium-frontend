@@ -7,6 +7,7 @@ import { OnboadingTemplate } from "../../../utility/ui/OnboardingTemplate/index-
 import { useNavigate } from "react-router-dom";
 import { NewUser, useAuth } from "../../../utility/global/auth/authProvider";
 import { TbMail, TbUser, TbLock } from "react-icons/tb";
+import { BeatLoader } from "react-spinners";
 
 export const CreateAccount = () => {
   const navigate = useNavigate();
@@ -15,10 +16,11 @@ export const CreateAccount = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [newUserForm, setNewUserForm] = useState<NewUser>({
-    Email: "",
-    Username: "",
-    Role: "user",
-    Password: "",
+    userId: 0,
+    email: "",
+    username: "",
+    role: "user",
+    password: "",
   });
 
   // const goToOTP = async () => {
@@ -34,9 +36,9 @@ export const CreateAccount = () => {
   const goToOTP = async () => {
     setIsLoading(true);
     console.log(newUserForm);
-    console.log(newUserForm?.Email);
+    console.log(newUserForm?.email);
     try {
-      setOnboardingEmail(newUserForm?.Email);
+      setOnboardingEmail(newUserForm.email);
       let registerResponse = await createAccount(newUserForm);
 
       // Handle successful response
@@ -68,7 +70,7 @@ export const CreateAccount = () => {
         className="button-text"
         onClick={(e) => navigate("/onboarding/login")}
       >
-        Register
+        Login
       </div>
     </div>
   );
@@ -79,7 +81,11 @@ export const CreateAccount = () => {
       customSubheading={subheading}
       submitButton={
         <Button onClick={goToOTP}>
-          {isLoading ? "Wait..." : "Create Account"}
+          {isLoading ? (
+            <BeatLoader color="#45404D" loading={true} size={8} />
+          ) : (
+            "Create Account"
+          )}
         </Button>
       }
       style={{ width: "360px", gap: "40px" }}
@@ -91,7 +97,7 @@ export const CreateAccount = () => {
         widthWrap="-webkit-fill-available"
         icon={<TbUser />}
         onChange={(e) => {
-          setNewUserForm({ ...newUserForm, Username: e });
+          setNewUserForm({ ...newUserForm, username: e });
           setFeedbackMessage(null);
         }}
       />
@@ -101,7 +107,7 @@ export const CreateAccount = () => {
         widthWrap="-webkit-fill-available"
         icon={<TbMail />}
         onChange={(e) => {
-          setNewUserForm({ ...newUserForm, Email: e });
+          setNewUserForm({ ...newUserForm, email: e });
           setFeedbackMessage(null);
         }}
       />
@@ -117,7 +123,7 @@ export const CreateAccount = () => {
         widthWrap="-webkit-fill-available"
         icon={<TbLock />}
         onChange={(e) => {
-          setNewUserForm({ ...newUserForm, Password: e });
+          setNewUserForm({ ...newUserForm, password: e });
           setFeedbackMessage(null);
         }}
       />

@@ -7,6 +7,7 @@ import { Form } from "../../../elements/Input/Form";
 import { OnboadingTemplate } from "../../../utility/ui/OnboardingTemplate/index-onboading-template";
 import { useNavigate } from "react-router-dom";
 import { TbMail, TbLock } from "react-icons/tb";
+import { BeatLoader, ClipLoader } from "react-spinners";
 
 interface IUserForm {
   Email: string;
@@ -68,7 +69,13 @@ export const Login = () => {
       heading="Login"
       customSubheading={subheading}
       submitButton={
-        <Button onClick={goToOTP}>{isLoading ? "Wait..." : "Login"}</Button>
+        <Button onClick={goToOTP}>
+          {isLoading ? (
+            <BeatLoader color="#45404D" loading={true} size={8} />
+          ) : (
+            "Login"
+          )}
+        </Button>
       }
       style={{ width: "360px", gap: "40px" }}
     >
