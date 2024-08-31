@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./OverlayHolderCard-styles.module.scss";
+import { NULL } from "sass";
+import { fetchAccountData } from "../../../../../services/GetAccount";
 
 const OverlayHolderCard = ({
     isVisible,
@@ -9,7 +11,9 @@ const OverlayHolderCard = ({
     userID,
     login,
     accType,
-    acc
+    acc,
+    fromT,
+    toT
 }: {
     isVisible: boolean;
     onClose: () => void;
@@ -18,20 +22,11 @@ const OverlayHolderCard = ({
     userID: string;
     login: string;
     accType: string;
-    acc: any
+    acc: any;
+    fromT: [];
+    toT: [];
 }) => {
-
-
-
-    const [selectedCurrency, setSelectedCurrency] = useState("Hydrogen");
-    const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
-
-    const currencies = ["Hydrogen", "Lithium", "Palladium", "Xenon"];
-
-    const handleCurrencyClick = (currency: string) => {
-        setSelectedCurrency(currency);
-        setIsCurrencyDropdownOpen(false);
-    };
+    console.log(fromT)
 
     if (!isVisible) return null;
 
@@ -46,9 +41,50 @@ const OverlayHolderCard = ({
                 <p>Login: {login}</p>
                 <p>Account Type: {accType}</p>
 
+                <h2>Send</h2>
+                {
+                    acc != null ? (
+                        fromT != null ? (
+                            fromT.map((item: any) => (
+                                <div>
+                                    <p> <span><b> Ammount Transfered: </b></span>{item.amount}</p>
+                                    <p>Recepient{item.toAccountId}</p>
+                                    <p>Date: {item.timestamp}</p>
+                                    <p>Type: {item.transactionType}</p>
+                                </div>
+
+                            ))
+                        ) : (
+                            <p>No Transactions Received</p>
+                        )
+                    ) : (
+                        <p>No account Available</p>
+                    )
+                }
+
+                <h2>Receive</h2>
+                {
+                    acc != null ? (
+                        toT != null ? (
+                            toT.map((item: any) => (
+                                <div>
+                                    <p> <span><b> Ammount Transfered: </b></span>{item.amount}</p>
+                                    <p>Recepient{item.fromAccountId}</p>
+                                    <p>Date: {item.timestamp}</p>
+                                    <p>Type: {item.transactionType}</p>
+                                </div>
+
+                            ))
+                        ) : (
+                            <p>No Transactions Received</p>
+                        )
+                    ) : (
+                        <p>No account Available</p>
+                    )
+                }
+
                 <div className={styles.paymentButtonContainer}>
                     <div className={styles.closeButtonPayCard}
-                        // onClick={onClose}>
                         onClick={onClose}>
                         <p>close</p>
                     </div>
