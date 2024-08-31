@@ -5,12 +5,11 @@ import OverlayHolderCard from "./OverlayHolderCard/OnverlayHolderCard";
 
 const AdminUsersTable = (props: any) => {
 
-    const { id, name, userID, login, accType, adminAction, account, fromTransactions, toTransactions } = props;
+    const { id, name, userID, login, accType, adminAction, account, fromTransactions, toTransactions, status } = props;
 
     const [isOverlayHolderdVisible, setIsOverlayHolderVisible] = useState(false);
 
     const handleHolderCardOpen = () => {
-        console.log(account)
         setIsOverlayHolderVisible(true)
     };
 
@@ -25,13 +24,10 @@ const AdminUsersTable = (props: any) => {
         return adminAction === true ? styles.adminTbButtonActive : styles.adminTbButtonInactive;
     };
 
-    // const getButtonStyle = () => {
-    //     return adminAction === "active" ? { color: "green" } : { color: "red" };
-    // };
     return (
 
         <>
-            <div className={[styles.button, styles.sendButton].join(' ')} onClick={handleHolderCardOpen}>
+            <div>
                 <div className={styles.adminMain}>
 
                     <div className={styles.adminTbId}>
@@ -53,11 +49,24 @@ const AdminUsersTable = (props: any) => {
                     <div className={styles.adminTbAccType}>
                         <p>{accType}</p>
                     </div>
+                    {
+                        account != null ? (
+                            <div className={[styles.button, styles.sendButton].join(' ')} onClick={handleHolderCardOpen}>
+                                <div className={`${styles.adminTbButton} ${getButtonClass()}`}>
+                                    <p>View</p>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className={[styles.button, styles.sendButton].join(' ')}>
+                                <div className={`${styles.adminTbButton} ${getButtonClass()}`}>
+                                    <p>View</p>
+                                </div>
+                            </div>
+                        )
+                    }
 
                     <div className={styles.adminTbAdminAction}>
-                        <div className={`${styles.adminTbButton} ${getButtonClass()}`}
-                        //  style={getButtonStyle()}
-                        >
+                        <div className={`${styles.adminTbButton} ${getButtonClass()}`}>
                             <p>{getActionButtonText()}</p>
                         </div>
                     </div>
@@ -73,7 +82,8 @@ const AdminUsersTable = (props: any) => {
                 accType={accType}
                 acc={account}
                 fromT={fromTransactions}
-                toT={toTransactions} />
+                toT={toTransactions}
+                status={status} />
         </>
 
     )
