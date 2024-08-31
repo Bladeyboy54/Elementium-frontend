@@ -9,6 +9,7 @@ export interface User {
   id?: number;
   UserId?: number;
   Email: string;
+  email?: string;
   Username: string;
   Avatar?: string;
   Role: "user" | "admin" | "";
