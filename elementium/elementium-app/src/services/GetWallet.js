@@ -6,14 +6,14 @@ export const GetWallet = async (userLoggedIn) => {
 
 
     // // For when the Account and Status are correctly attached to the user / DTO created: ================================
-    let userId = userLoggedIn.userId;
+    let accountId = userLoggedIn.account.accountId;
     let balance_h2;
     let balance_li;
     let balance_pd;
     let balance_xe;
     
     try {
-        const response = await fetch(`http://localhost:5138/api/Account/${userId}`);
+        const response = await fetch(`http://localhost:5138/api/Account/${accountId}`);
         if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
         }
