@@ -27,7 +27,7 @@ interface AuthContextType {
   hasPermission: boolean;
   createAccount: (newUserForm: NewUser) => Promise<IFeedback>;
   login: (userForm: ILoginFormType) => Promise<IFeedback>;
-  approveOTP: (otp: number) => Promise<IFeedback>;
+  approveOTP: (otpForm: IOTPFormType) => Promise<IFeedback>;
   setUserLoggedIn: (user: User | null) => void;
   setPermission: (permission: boolean) => void;
   setOnboardingEmail: (email: string | null) => void;
@@ -38,6 +38,11 @@ interface AuthContextType {
 interface ILoginFormType {
   Email: string;
   Password: string;
+}
+
+interface IOTPFormType {
+  Email: string;
+  Otp: string;
 }
 
 export interface IFeedback {
@@ -180,23 +185,27 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
-  const approveOTP = async (otp: number): Promise<IFeedback> => {
-    // TODO: Permissions based on user role after login
-    // TODO: Communicate with backend before setting authenticated to true
-    try {
+  const approveOTP = async (otpForm: IOTPFormType): Promise<IFeedback> => {
+    const response: any = await axios.post(url("OTP/verify-code"), otpForm);
+    const res: any = response?.data;
+    console.log(response);
+
+    if (res.type === 200) {
       const feedback: IFeedback = {
-        type: 200,
-        status: "Success",
-        message: "Login successful",
+        type: res?.type,
+        status: res?.status,
+        message: res?.message,
+        body: res?.body?.$values[0],
       };
 
       feedback.type === 200 && setIsAuthenticated(true);
       return feedback;
-    } catch (error) {
+    } else {
       const feedback: IFeedback = {
         type: 500,
-        status: "Error",
-        message: "Login failed",
+        status: res?.status,
+        message: res?.message,
+        body: res?.body,
       };
       return feedback;
     }
