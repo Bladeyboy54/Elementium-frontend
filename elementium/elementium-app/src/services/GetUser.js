@@ -20,8 +20,8 @@ export const fetchUserData = async (userLoggedIn) => {
 
 
     let cardNumbers = Math.random().toString().slice(2, 18); //<-- small silly little add on to show show card numbers
-    data.$values[0] = {
-      ...data.$values[0],
+    data[0] = {
+      ...data[0],
       cardNumbers: cardNumbers
     }
     

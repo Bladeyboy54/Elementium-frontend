@@ -10,7 +10,7 @@ export const Admin = () => {
   useEffect(() => {
     getAllUsers().then((data) => {
       console.log(data);
-      setAccountHolder(data.$values || []);
+      setAccountHolder(data || []);
     });
   }, []);
 
@@ -46,7 +46,8 @@ return (
                     userID={item.userId} 
                     login={item.created_at} 
                     accType={item.account?.accountStatusId} 
-                    adminAction={item.account?.active} 
+                    adminAction={item.account?.active}
+                    account={item.account}
                   />
                 ))
               ) : (
