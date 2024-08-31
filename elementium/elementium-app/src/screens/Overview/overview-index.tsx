@@ -16,14 +16,13 @@ const Overview = () => {
 
   useEffect(() => {
     fetchUserData(userLoggedIn).then((data) => {
-      console.log("USER ID OVerview ===>", data);
       setUser(data[0]);
       setTimeout(() => setLoading(false), 1000);
-      console.log("USER ID OVerview ===>", userLoggedIn)
+      // console.log("USER ID OVerview ===>", user)
     });
   }, [fetchUserData]);
 
-  
+
 
   return (
     <>
@@ -63,9 +62,9 @@ const Overview = () => {
                         <h3>
                           {user.cardNumbers
                             ? `${user.cardNumbers.slice(
-                                0,
-                                4
-                              )} **** **** ${user.cardNumbers.slice(-4)}`
+                              0,
+                              4
+                            )} **** **** ${user.cardNumbers.slice(-4)}`
                             : "No card available"}
                         </h3>
                         <span className={styles.plaqueDate}>08/26</span>
@@ -98,43 +97,47 @@ const Overview = () => {
                     <p>Recipient</p>
                     <p>Amount</p>
                   </div>
-                  <div className={styles.scrollHistory}>
-                    <TransactionHistoryCardComponent
-                      type="sent"
-                      recipient="1234"
-                      amount="14058"
-                    />
-                    <TransactionHistoryCardComponent
-                      type="received"
-                      recipient="1234"
-                      amount="14058"
-                    />
-                    <TransactionHistoryCardComponent
-                      type="withdrew"
-                      recipient="1234"
-                      amount="14058"
-                    />
-                    <TransactionHistoryCardComponent
-                      type="sent"
-                      recipient="1234"
-                      amount="14058"
-                    />
-                    <TransactionHistoryCardComponent
-                      type="sent"
-                      recipient="1234"
-                      amount="14058"
-                    />
-                    <TransactionHistoryCardComponent
-                      type="sent"
-                      recipient="1234"
-                      amount="14058"
-                    />
-                    <TransactionHistoryCardComponent
-                      type="sent"
-                      recipient="1234"
-                      amount="14058"
-                    />
-                  </div>
+
+                  {
+                    user.account != null ? (
+                      user.account.fromTransactions != null ? (
+                        user.account.fromTransactions.map((item: any) => (
+                          <div className={styles.scrollHistory}>
+                            <TransactionHistoryCardComponent
+                              type="sent"
+                              recipient={item.toAccountId}
+                              amount={item.amount}
+                            />
+                          </div>
+                        ))
+                      ) : (
+                        <p>No Transactions Sent</p>
+                      )
+                    ) : (
+                      <p>No account Available</p>
+                    )
+                  }
+
+                  {
+                    user.account != null ? (
+                      user.account.toTransactions != null ? (
+                        user.account.toTransactions.map((item: any) => (
+                          <div className={styles.scrollHistory}>
+                            <TransactionHistoryCardComponent
+                              type="received"
+                              recipient={item.toAccountId}
+                              amount={item.amount}
+                            />
+                          </div>
+                        ))
+                      ) : (
+                        <p>No Transactions Received</p>
+                      )
+                    ) : (
+                      <p>No account Available</p>
+                    )
+                  }
+
                 </div>
               </div>
             </div>

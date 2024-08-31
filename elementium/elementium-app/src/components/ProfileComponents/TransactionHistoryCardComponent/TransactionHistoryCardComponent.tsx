@@ -9,8 +9,11 @@ const TransactionHistoryCardComponent = (props: any) => {
 
     const {type, recipient, amount} = props;
 
-    const displayType = type.charAt(0).toUpperCase() + type.slice(1);
+    // const displayType = type.charAt(0).toUpperCase() + type.slice(1);
+    const displayType = type;
     const formattedAmount = new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR' }).format(amount);
+
+    console.log(type)
 
     return(<>
         <div className={styles.main}>

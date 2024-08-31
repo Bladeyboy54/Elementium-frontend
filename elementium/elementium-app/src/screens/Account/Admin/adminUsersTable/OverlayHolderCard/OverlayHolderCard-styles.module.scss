@@ -20,7 +20,7 @@
     padding: 20px 30px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    width: 300px;
+    width: 30%;
     color: #fff;
     z-index: 1001;
     border: 2px solid #B1B98E;
@@ -152,6 +152,16 @@
         filter: saturate(2);
     }
     }
+
+    .scrollHistory{
+      display: flex;
+      flex-direction: column;
+      gap: 0.5vh;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: 100%;
+  }
     
   }
   
