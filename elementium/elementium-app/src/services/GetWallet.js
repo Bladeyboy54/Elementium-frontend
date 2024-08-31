@@ -19,7 +19,9 @@ export const GetWallet = async (userLoggedIn) => {
         }
     
         let data = await response.json();
-        data = data.$values[0];
+        console.log("AAAAAAA GetWallet.js - data: ", data);
+        
+        data = data[0];
     
         balance_h2 = data.balance_h2;
         balance_li = data.balance_li;

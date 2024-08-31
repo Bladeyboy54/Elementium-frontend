@@ -5,17 +5,18 @@ import OverlayHolderCard from "./OverlayHolderCard/OnverlayHolderCard";
 
 const AdminUsersTable = (props: any) => {
 
+    const { id, name, userID, login, accType, adminAction, account, fromTransactions, toTransactions } = props;
+
     const [isOverlayHolderdVisible, setIsOverlayHolderVisible] = useState(false);
 
     const handleHolderCardOpen = () => {
+        console.log(account)
         setIsOverlayHolderVisible(true)
     };
 
     const handleHolderCardClose = () => {
         setIsOverlayHolderVisible(false);
     };
-
-    const { id, name, userID, login, accType, adminAction, acccount } = props;
 
     const getActionButtonText = () => {
         return adminAction === true ? "Disable" : "Activate";
@@ -70,7 +71,9 @@ const AdminUsersTable = (props: any) => {
                 userID={userID}
                 login={login}
                 accType={accType}
-                acc={acccount} />
+                acc={account}
+                fromT={fromTransactions}
+                toT={toTransactions} />
         </>
 
     )

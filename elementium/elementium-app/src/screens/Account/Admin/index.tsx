@@ -48,6 +48,8 @@ return (
                     accType={item.account?.accountStatusId} 
                     adminAction={item.account?.active}
                     account={item.account}
+                    fromTransactions={item.account?.fromTransactions}
+                    toTransactions={item.account?.toTransactions}
                   />
                 ))
               ) : (

@@ -139,11 +139,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   const login = async (userForm?: ILoginFormType): Promise<IFeedback> => {
     const response: any = await axios.post(url("Login"), userForm);
-    console.log(response);
-    
-
     const res: any = response?.data?.body[0];
-    console.log(res);
+    console.log("Login response: ",res);
 
     // If the response contains an email, send the OTP
     if (res) {

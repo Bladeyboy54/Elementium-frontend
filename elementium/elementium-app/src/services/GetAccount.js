@@ -10,7 +10,7 @@
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     let data = await response.json();  
-    data = data.$values[0]
+    data = data[0]
     console.log("GetAccount.js - data: ", data);
     return data;
   } catch (error) {

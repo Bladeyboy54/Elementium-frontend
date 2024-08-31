@@ -13,16 +13,16 @@ export const levelUpAccount = async (userLoggedIn) => {
   
 
     //   STILL WORKING HERE: DONT TOUCH.....
-    
-    //   const putResponse = await fetch(`http://localhost:5138/api/Account/${userId}`, {
-    //     method: "PUT",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       balance_h2: data.balance_h2 + 100,
-    //     }),
-    //   });
+
+      const putResponse = await fetch(`http://localhost:5138/api/Account/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          balance_h2: data.balance_h2 + 100,
+        }),
+      });
       
     } catch (error) {
       console.error("Fetch error:", error);
