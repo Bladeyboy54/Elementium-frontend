@@ -9,10 +9,14 @@
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const data = await response.json();    
+    let data = await response.json();  
+    // data = data.$values[0]
+    console.log("GetAccount.js - data: ", data);
     return data;
   } catch (error) {
     console.error("Fetch error:", error);
     return {username: "Felix", email: "King"} 
   }
 };
+
+
