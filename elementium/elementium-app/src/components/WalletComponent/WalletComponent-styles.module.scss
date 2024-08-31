@@ -22,6 +22,10 @@
       padding: 0;
     }
 
+
+
+
+    // CHATGPT HELPED ME WITH THIS: (not my code)=========================================================================
     .levelUpText {
       color: white;
       cursor: pointer;
@@ -44,13 +48,13 @@
 
     .coolText {
       color: white;
-      cursor: pointer;
       background: linear-gradient(to right, #f700ff, #00ff11); /* Gradient colors */
       -webkit-background-clip: text; /* Clips the background to the text */
       -webkit-text-fill-color: transparent; /* Makes the text itself transparent */
       text-decoration: none; /* Disable default underline if you're using ::after */
       position: relative; /* Add this for the absolute positioning of ::after */
     }
+    // ===================================================================================================================
     
   }
 }
