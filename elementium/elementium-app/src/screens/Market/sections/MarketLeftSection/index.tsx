@@ -7,10 +7,10 @@ import Button from "../../../../elements/Input/Button";
 import { DropdownEl } from "../../../../elements/Input/Dropdown";
 import { elements } from "chart.js";
 import { useAuth } from "../../../../utility/global/auth/authProvider";
+import { topUpWalletFunction } from "../../../../services/TopUpWallet";
 
 export const MarketLeftSection = () => {
   const [topUpForm, setTopUpForm] = useState<any>({
-    userId: 0,
     currency: "",
     amount: 0,
   });
@@ -19,7 +19,7 @@ export const MarketLeftSection = () => {
   
 
   const handleSubmit = () => {
-    console.log("Submitted: ", topUpForm);
+    topUpWalletFunction(userLoggedIn, topUpForm);
   }
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export const MarketLeftSection = () => {
           }}
         >
           <DropdownEl onSelectOption={(e) => {
-                setTopUpForm({ ...topUpForm, currency: e.label });
+                setTopUpForm({ ...topUpForm, currency: e.value });
               }} />
           <div className="market-left-form-amount">
             <InputFieldText

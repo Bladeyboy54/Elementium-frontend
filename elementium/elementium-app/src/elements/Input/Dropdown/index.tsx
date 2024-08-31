@@ -41,19 +41,19 @@ export const DropdownEl: React.FC<DropdownElProps> = ({
   const dropdownOptions = [
     {
       label: "Hydrogen",
-      value: "1",
+      value: "balance_h2",
     },
     {
       label: "Lithium",
-      value: "2",
+      value: "balance_li",
     },
     {
       label: "Palladium",
-      value: "3",
+      value: "balance_pd",
     },
     {
       label: "Xenon",
-      value: "4",
+      value: "balance_xe",
     },
   ];
   const [selectedOption, setSelectedOption] = useState<string>(
