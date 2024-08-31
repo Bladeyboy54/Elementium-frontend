@@ -2,9 +2,10 @@ export const transactionFunction = async (fromUserAccount, toUserAccount, amount
 
     // expected input: {"accountId": 1,"balance_h2": 6500,"balance_li": 0,"balance_pd": 0,"balance_xe": 22,"active": true,"userId": 3,"accountStatusId": 1...}, {"accountId": 1,"balance_h2": 6500,"balance_li": 0,"balance_pd": 0,"balance_xe": 22,"active": true,"userId": 2,"accountStatusId": 1...}, 500, "balance_h2"
 
-
-    let fromUserAccountId = fromUserAccount.accountId;
-    let toUserAccountId = toUserAccount.accountId;
+    console.log("This is the From Account",fromUserAccount)
+    console.log("This is the To Account",toUserAccount)
+    let fromUserAccountId = fromUserAccount;
+    let toUserAccountId = toUserAccount;
 
     try {
         const fromUserResponse = await fetch(`http://localhost:5138/api/Account/${fromUserAccountId}`);
@@ -14,10 +15,11 @@ export const transactionFunction = async (fromUserAccount, toUserAccount, amount
 
         let fromUserData = await fromUserResponse.json();
         fromUserData = fromUserData[0];
-
+        console.log("Fron User Data ==>", fromUserData)
+        console.log("currency ==>", currency)
         if (fromUserData[currency] >= amount) {
 
-            const toUserResponse = await fetch(`http://localhost:5138/api/Account/${toUserAccountId}`)
+            const toUserResponse = await fetch(`http://localhost:5138/api/Account/${toUserAccountId}`);
             if (!toUserResponse.ok) {
                 throw new Error(`HTTP error! status: ${toUserResponse.status}`);
             }
@@ -62,7 +64,29 @@ export const transactionFunction = async (fromUserAccount, toUserAccount, amount
             else {
                 console.log("Balance added successfully");
             }
-
+            const transactionData = {
+                transactionId: 0, 
+                transactionType:currency,
+                amount: parseInt(amount),
+                timestamp: new Date().toISOString(),
+                fromAccountId: fromUserAccountId,
+                toAccountId: toUserAccountId
+             };
+             
+             const postTransactionResponse = await fetch(`http://localhost:5138/api/Transaction`, 
+             {
+                 method: "POST",
+                 headers: {
+                     "Content-Type": "application/json",
+                 },
+                 body: JSON.stringify(transactionData),
+             });
+             
+             if (!postTransactionResponse.ok) {
+                 throw new Error(`HTTP error! status: ${postTransactionResponse.status}`);
+             } else {
+                 console.log("Transaction recorded successfully");
+             }
         } else {
             throw new Error("Insufficient funds");
         }
