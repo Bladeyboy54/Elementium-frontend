@@ -64,7 +64,7 @@ const WalletComponent = () => {
           return (
             <p>
               You're eligable for an account upgrade! Click{" "}
-              <span>here</span> to claim your <span>Alkali Account</span>{" "}
+              <span>here</span> to claim your <span>Transition Account</span>{" "}
               status!
             </p>
           );
@@ -79,7 +79,7 @@ const WalletComponent = () => {
           return (
             <p>
               You're eligable for an account upgrade! Click{" "}
-              <span>here</span> to claim your <span>Alkali Account</span>{" "}
+              <span>here</span> to claim your <span>Noble Account</span>{" "}
               status!
             </p>
           );
