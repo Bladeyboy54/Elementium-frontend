@@ -5,6 +5,8 @@ import OverlayHolderCard from "./OverlayHolderCard/OnverlayHolderCard";
 
 const AdminUsersTable = (props: any) => {
 
+    const { id, name, userID, login, accType, adminAction, account, fromTransactions, toTransactions, status } = props;
+
     const [isOverlayHolderdVisible, setIsOverlayHolderVisible] = useState(false);
 
     const handleHolderCardOpen = () => {
@@ -15,8 +17,6 @@ const AdminUsersTable = (props: any) => {
         setIsOverlayHolderVisible(false);
     };
 
-    const { id, name, userID, login, accType, adminAction, acccount } = props;
-
     const getActionButtonText = () => {
         return adminAction === true ? "Disable" : "Activate";
     }
@@ -24,9 +24,6 @@ const AdminUsersTable = (props: any) => {
         return adminAction === true ? styles.adminTbButtonActive : styles.adminTbButtonInactive;
     };
 
-    // const getButtonStyle = () => {
-    //     return adminAction === "active" ? { color: "green" } : { color: "red" };
-    // };
     return (
 
         <>
@@ -54,9 +51,7 @@ const AdminUsersTable = (props: any) => {
                     </div>
 
                     <div className={styles.adminTbAdminAction}>
-                        <div className={`${styles.adminTbButton} ${getButtonClass()}`}
-                        //  style={getButtonStyle()}
-                        >
+                        <div className={`${styles.adminTbButton} ${getButtonClass()}`}>
                             <p>{getActionButtonText()}</p>
                         </div>
                     </div>
@@ -70,7 +65,10 @@ const AdminUsersTable = (props: any) => {
                 userID={userID}
                 login={login}
                 accType={accType}
-                acc={acccount} />
+                acc={account}
+                fromT={fromTransactions}
+                toT={toTransactions}
+                status={status} />
         </>
 
     )
