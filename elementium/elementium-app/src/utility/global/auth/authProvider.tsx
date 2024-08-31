@@ -7,15 +7,16 @@ const url = (endpoint: string): string => {
 
 export interface User {
   id?: number;
-  email: string;
-  username: string;
-  avatar?: string;
-  role: "user" | "admin" | "";
-  createdAt?: string;
+  UserId?: number;
+  Email: string;
+  Username: string;
+  Avatar?: string;
+  Role: "user" | "admin" | "";
+  Created_at?: string;
 }
 
 export interface NewUser extends User {
-  password: string;
+  Password: string;
 }
 
 // Shape of context
@@ -74,10 +75,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const [hasPermission, setHasPermission] = useState<boolean>(false);
   const [userLoggedIn, setUserLoggedIn] = useState<User | null>({
     id: 1,
-    email: "",
-    username: "",
-    avatar: "",
-    role: "",
+    UserId: 1,
+    Email: "",
+    Username: "",
+    Avatar: "",
+    Role: "",
   });
   let feedback: IFeedback = {
     type: 0,
@@ -115,28 +117,42 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const createAccount = async (newUserForm?: NewUser): Promise<IFeedback> => {
     // Post newUserForm to backend
     const response = await axios.post(url("Register"), newUserForm);
-    const res: User = response.data[0];
+    const res: any = response?.data?.body;
+    console.log("Register response: ", response);
 
     // If the response contains an email, send the OTP
-    if (res.email) {
-      await sendOTP(res); // Ensure sendOTP is awaited within an async function
+    if (res) {
+      // await sendOTP(res); // Ensure sendOTP is awaited within an async function
+      setOnboardingName(res.username);
+      setUserLoggedIn(res);
+    } else {
+      console.log("res: ", res);
+      const feedback: IFeedback = {
+        type: 500, // Return the actual status code if available
+        status: "Error",
+        message: res?.message,
+        body: { res }, // Include response data if available
+      };
+      return feedback;
     }
 
     try {
-      sessionStorage.setItem("user", JSON.stringify(res));
       const feedback: IFeedback = {
         type: 200,
         status: "Success",
-        message: "Register successful",
+        message: res?.message,
         body: res,
       };
       return feedback;
-    } catch (error) {
+    } catch (error: any) {
+      // Log the error for debugging purposes
+      console.error("Login error:", error);
+
       const feedback: IFeedback = {
-        type: 500,
+        type: 500, // Return the actual status code if available
         status: "Error",
-        message: "Register failed",
-        body: error,
+        message: "Login failed",
+        body: error?.response?.data || error, // Include response data if available
       };
       return feedback;
     }
@@ -145,7 +161,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const login = async (userForm?: ILoginFormType): Promise<IFeedback> => {
     const response: any = await axios.post(url("Login"), userForm);
     const res: any = response?.data?.body[0];
-    console.log("Login response: ",res);
+    console.log("Login response: ", res);
 
     // If the response contains an email, send the OTP
     if (res) {

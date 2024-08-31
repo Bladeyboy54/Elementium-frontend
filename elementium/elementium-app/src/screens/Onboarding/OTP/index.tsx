@@ -13,7 +13,7 @@ export const OTP = () => {
   const { onboardingEmail, onboardingName, userLoggedIn, approveOTP } =
     useAuth();
   const [verifyOTPForm, setVerifyOTPForm] = useState<any>({
-    Email: userLoggedIn?.email,
+    Email: userLoggedIn?.Email,
     Code: Number,
   });
   const username = shortenText(onboardingName!, 15);

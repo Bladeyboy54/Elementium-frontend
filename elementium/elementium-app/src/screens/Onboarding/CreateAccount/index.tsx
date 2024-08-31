@@ -11,22 +11,51 @@ import { TbMail, TbUser, TbLock } from "react-icons/tb";
 export const CreateAccount = () => {
   const navigate = useNavigate();
   const { createAccount, setOnboardingEmail, setOnboardingName } = useAuth();
-  const goToOTP = async () => {
-    setOnboardingName(newUserForm.username);
-    setOnboardingEmail(newUserForm.email);
-    let newAccResponse = await createAccount(newUserForm);
-
-    if (newAccResponse.type === 200) {
-      navigate("/onboarding/otp");
-    }
-  };
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [newUserForm, setNewUserForm] = useState<NewUser>({
-    email: "",
-    username: "",
-    role: "user",
-    password: "",
+    Email: "",
+    Username: "",
+    Role: "user",
+    Password: "",
   });
+
+  // const goToOTP = async () => {
+  //   setOnboardingName(newUserForm.username);
+  //   setOnboardingEmail(newUserForm.email);
+  //   let newAccResponse = await createAccount(newUserForm);
+
+  //   if (newAccResponse.type === 200) {
+  //     navigate("/onboarding/otp");
+  //   }
+  // };
+
+  const goToOTP = async () => {
+    setIsLoading(true);
+    console.log(newUserForm);
+    console.log(newUserForm?.Email);
+    try {
+      setOnboardingEmail(newUserForm?.Email);
+      let registerResponse = await createAccount(newUserForm);
+
+      // Handle successful response
+      if (registerResponse.type === 200 || registerResponse.type === 201) {
+        console.log("Registration successful:", registerResponse);
+        navigate("/onboarding/otp");
+      } else {
+        // Handle specific cases like unauthorized or other errors
+        setFeedbackMessage(registerResponse.message);
+        console.error("Registration failed with response:", registerResponse);
+      }
+    } catch (error: any) {
+      setIsLoading(false);
+      // Catch any network errors or unexpected issues
+      const feedback = error;
+      setFeedbackMessage(feedback?.response?.data?.message);
+      console.error(feedback);
+    }
+  };
 
   useEffect(() => {
     console.log(newUserForm);
@@ -39,7 +68,7 @@ export const CreateAccount = () => {
         className="button-text"
         onClick={(e) => navigate("/onboarding/login")}
       >
-        Login
+        Register
       </div>
     </div>
   );
@@ -48,22 +77,33 @@ export const CreateAccount = () => {
     <Form
       heading="Create Account"
       customSubheading={subheading}
-      submitButton={<Button onClick={goToOTP}>Create Account</Button>}
+      submitButton={
+        <Button onClick={goToOTP}>
+          {isLoading ? "Wait..." : "Create Account"}
+        </Button>
+      }
       style={{ width: "360px", gap: "40px" }}
     >
+      {feedbackMessage && <div className="form-error">{feedbackMessage}</div>}
       <InputFieldText
         type="text"
         placeholder="Username"
         widthWrap="-webkit-fill-available"
         icon={<TbUser />}
-        onChange={(e) => setNewUserForm({ ...newUserForm, username: e })}
+        onChange={(e) => {
+          setNewUserForm({ ...newUserForm, Username: e });
+          setFeedbackMessage(null);
+        }}
       />
       <InputFieldText
         type="text"
         placeholder="Email"
         widthWrap="-webkit-fill-available"
         icon={<TbMail />}
-        onChange={(e) => setNewUserForm({ ...newUserForm, email: e })}
+        onChange={(e) => {
+          setNewUserForm({ ...newUserForm, Email: e });
+          setFeedbackMessage(null);
+        }}
       />
       <InputFieldText
         type="password"
@@ -76,15 +116,16 @@ export const CreateAccount = () => {
         placeholder="Re-enter password"
         widthWrap="-webkit-fill-available"
         icon={<TbLock />}
-        onChange={(e) => setNewUserForm({ ...newUserForm, password: e })}
+        onChange={(e) => {
+          setNewUserForm({ ...newUserForm, Password: e });
+          setFeedbackMessage(null);
+        }}
       />
     </Form>
   );
 
   return (
-    <div className="login">
-      {/* Login{userForm.email}
-       */}
+    <div className="create-account">
       <OnboadingTemplate pageHeading="Join the club." form={CreateAccForm} />
     </div>
   );
