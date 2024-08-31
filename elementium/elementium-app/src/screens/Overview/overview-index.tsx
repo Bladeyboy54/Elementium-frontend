@@ -97,47 +97,49 @@ const Overview = () => {
                     <p>Recipient</p>
                     <p>Amount</p>
                   </div>
+                  <div className={styles.scrollHistory}>
 
-                  {
-                    user.account != null ? (
-                      user.account.fromTransactions != null ? (
-                        user.account.fromTransactions.map((item: any) => (
-                          <div className={styles.scrollHistory}>
-                            <TransactionHistoryCardComponent
-                              type="sent"
-                              recipient={item.toAccountId}
-                              amount={item.amount}
-                            />
-                          </div>
-                        ))
+                  
+                    {
+                      user.account != null ? (
+                        user.account.fromTransactions != null ? (
+                          user.account.fromTransactions.map((item: any) => (
+                            <div>
+                              <TransactionHistoryCardComponent
+                                type="sent"
+                                recipient={item.toAccountId}
+                                amount={item.amount}
+                              />
+                            </div>
+                          ))
+                        ) : (
+                          <p>No Transactions Sent</p>
+                        )
                       ) : (
-                        <p>No Transactions Sent</p>
+                        <p>No account Available</p>
                       )
-                    ) : (
-                      <p>No account Available</p>
-                    )
-                  }
+                    }
 
-                  {
-                    user.account != null ? (
-                      user.account.toTransactions != null ? (
-                        user.account.toTransactions.map((item: any) => (
-                          <div className={styles.scrollHistory}>
-                            <TransactionHistoryCardComponent
-                              type="received"
-                              recipient={item.toAccountId}
-                              amount={item.amount}
-                            />
-                          </div>
-                        ))
+                    {
+                      user.account != null ? (
+                        user.account.toTransactions != null ? (
+                          user.account.toTransactions.map((item: any) => (
+                            <div>
+                              <TransactionHistoryCardComponent
+                                type="received"
+                                recipient={item.toAccountId}
+                                amount={item.amount}
+                              />
+                            </div>
+                          ))
+                        ) : (
+                          <p>No Transactions Received</p>
+                        )
                       ) : (
-                        <p>No Transactions Received</p>
+                        <p>No account Available</p>
                       )
-                    ) : (
-                      <p>No account Available</p>
-                    )
-                  }
-
+                    }
+                  </div>
                 </div>
               </div>
             </div>
