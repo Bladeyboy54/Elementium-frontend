@@ -13,15 +13,15 @@ export const Transactions = () => {
 
   const { userLoggedIn } = useAuth()
 
-  const transactions = [ 
-    //-----------------DUMMY DATA-----------------\\
-    { type: "sent", recipient: "1234", amount: "14058" },
-    { type: "transfer", recipient: "5678", amount: "3250" },
-    { type: "withdrew", recipient: "1234", amount: "14058" },
-    { type: "transfer", recipient: "5678", amount: "3250" },
-    { type: "sent", recipient: "1234", amount: "14058" },
-    { type: "transfer", recipient: "5678", amount: "10000" },
-  ]
+  // const transactions = [ 
+  //   //-----------------DUMMY DATA-----------------\\
+  //   { type: "sent", recipient: "1234", amount: "14058" },
+  //   { type: "transfer", recipient: "5678", amount: "3250" },
+  //   { type: "withdrew", recipient: "1234", amount: "14058" },
+  //   { type: "transfer", recipient: "5678", amount: "3250" },
+  //   { type: "sent", recipient: "1234", amount: "14058" },
+  //   { type: "transfer", recipient: "5678", amount: "10000" },
+  // ]
 
   useEffect(() => {
     fetchUserData(userLoggedIn).then((data) => {
@@ -111,7 +111,50 @@ export const Transactions = () => {
                 <p>Recipient</p>
                 <p>Amount</p>
               </div>
-              <div className="transactionScrollHistory">
+              <div className="transactionPageScrollHistory1">
+
+              
+                {
+                  user.account != null ? (
+                    user.account.fromTransactions != null ? (
+                      user.account.fromTransactions.map((item: any) => (
+                        <div className="">
+                          <TransHistoryCardComponent
+                            type="sent"
+                            recipient={item.toAccountId}
+                            amount={item.amount}
+                          />
+                        </div>
+                      ))
+                    ) : (
+                      <p>No Transactions Sent</p>
+                    )
+                  ) : (
+                    <p>No account Available</p>
+                  )
+                }
+
+                {
+                  user.account != null ? (
+                    user.account.toTransactions != null ? (
+                      user.account.toTransactions.map((item: any) => (
+                        <div className="">
+                          <TransHistoryCardComponent
+                            type="transfer"
+                            recipient={item.toAccountId}
+                            amount={item.amount}
+                          />
+                        </div>
+                      ))
+                    ) : (
+                      <p>No Transactions Received</p>
+                    )
+                  ) : (
+                    <p>No account Available</p>
+                  )
+                }  
+              </div>
+              {/* <div className="transactionScrollHistory">
                 {transactions.map((transaction, index) => (
                   <TransHistoryCardComponent
                     key={index}
@@ -121,7 +164,7 @@ export const Transactions = () => {
                   />
                 ))}
                 
-              </div>
+              </div> */}
             </div>
           </div>
 

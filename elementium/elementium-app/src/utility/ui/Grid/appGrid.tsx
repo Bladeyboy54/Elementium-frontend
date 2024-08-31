@@ -44,7 +44,7 @@ const styles: {
   gridContainer: {
     display: "grid",
     gridTemplateColumns: "minmax(250px, 250px) 1fr",
-    height: window.innerHeight,
+    height: "100vh",
     width: "100vw",
     overflow: "hidden",
   },

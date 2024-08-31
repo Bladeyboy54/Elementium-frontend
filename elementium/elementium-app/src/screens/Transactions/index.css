@@ -104,9 +104,9 @@ html, body {
     align-items: center;
     margin-top: 3%;
     width: 100%;
-    min-height: 10%;
+    min-height: 30%;
     flex-grow: 1;
-    max-height: 42%;
+    max-height: 60%;
     color: #EDF2D6;
     font-family: "Spectral";
 }
@@ -114,7 +114,7 @@ html, body {
 .transactionHistoryBlock{
     display: flex;
     flex-direction: column;
-    min-height: 20%;
+    min-height: 30%;
     flex-grow: 1;
     max-height: 100%;
     width: 90%;
@@ -150,12 +150,12 @@ html, body {
         padding: 0;
     }
 }
-.transactionScrollHistory{
+.transactionPageScrollHistory1{
     display: flex;
     flex-direction: column;
     gap: 0.5vh;
     width: 100%;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     overflow-x: hidden;
     max-height: 100%;
 }
