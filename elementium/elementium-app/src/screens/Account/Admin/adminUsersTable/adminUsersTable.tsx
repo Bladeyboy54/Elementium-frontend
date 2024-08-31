@@ -27,7 +27,7 @@ const AdminUsersTable = (props: any) => {
     return (
 
         <>
-            <div className={[styles.button, styles.sendButton].join(' ')} onClick={handleHolderCardOpen}>
+            <div>
                 <div className={styles.adminMain}>
 
                     <div className={styles.adminTbId}>
@@ -49,6 +49,21 @@ const AdminUsersTable = (props: any) => {
                     <div className={styles.adminTbAccType}>
                         <p>{accType}</p>
                     </div>
+                    {
+                        account != null ? (
+                            <div className={[styles.button, styles.sendButton].join(' ')} onClick={handleHolderCardOpen}>
+                                <div className={`${styles.adminTbButton} ${getButtonClass()}`}>
+                                    <p>View</p>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className={[styles.button, styles.sendButton].join(' ')}>
+                                <div className={`${styles.adminTbButton} ${getButtonClass()}`}>
+                                    <p>View</p>
+                                </div>
+                            </div>
+                        )
+                    }
 
                     <div className={styles.adminTbAdminAction}>
                         <div className={`${styles.adminTbButton} ${getButtonClass()}`}>
