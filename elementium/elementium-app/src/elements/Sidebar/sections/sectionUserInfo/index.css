@@ -17,17 +17,22 @@
   flex-direction: row;
   justify-content: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 .user-info-img-wrap {
   height: 30px;
   width: 30px;
   border: 1px solid #1f1f1f;
-  background: #050406;
+  background: #b1b98e;
   border-radius: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.user-info-img-hover {
+  background: #050406;
 }
 
 .user-info-img {
