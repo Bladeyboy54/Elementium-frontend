@@ -196,6 +196,8 @@ In the front end
 - Transaction Monitoring: Admins have the ability to view all user transactions, providing oversight and ensuring the integrity of the platform.
 - User Management: Admins can disable or suspend user accounts if necessary, maintaining the security and compliance of the system.
 
+### Entity Relationship Diagram
+ ![erd][ERD1]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributors
@@ -250,3 +252,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Stars]: https://img.shields.io/github/stars/Bladeyboy54/Elementium-frontend.svg?style=for-the-badge
 [Stars-url]: https://github.com/Bladeyboy54/Elementium-frontend/stargazers
 [mockup1]: elementium/README.md-Assets/mockup1.png
+[ERD1]: elementium/README.md-Assets/ERD1.png
