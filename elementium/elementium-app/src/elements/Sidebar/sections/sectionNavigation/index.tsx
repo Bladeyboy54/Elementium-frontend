@@ -5,10 +5,13 @@ import { TbSmartHome } from "react-icons/tb";
 import { MdOutlineWallet } from "react-icons/md";
 import { TbChartCandle } from "react-icons/tb";
 import { TbArrowsExchange } from "react-icons/tb";
+import { TbUsers } from "react-icons/tb";
 
 import { NavLink, useLocation } from "react-router-dom";
+import { useAuth } from "../../../../utility/global/auth/authProvider";
 
 export const SectionNavigation = () => {
+  const { userLoggedIn } = useAuth();
   const [currentScreen, setCurrentScreen] = useState<string>("/");
   const location = useLocation();
   const iconSize = 24;
@@ -34,6 +37,15 @@ export const SectionNavigation = () => {
       route: "/market",
     },
   ];
+
+  // Conditionally add the "Admin Portal" if the user is an admin
+  if (userLoggedIn?.role === "admin") {
+    screens.push({
+      label: "Admin Portal",
+      icon: <TbUsers size={iconSize} />,
+      route: `/account/admin/${userLoggedIn?.userId}`,
+    });
+  }
 
   useEffect(() => {
     setCurrentScreen(location.pathname);
