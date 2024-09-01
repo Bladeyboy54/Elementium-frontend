@@ -99,11 +99,11 @@ const Overview = () => {
                   </div>
                   <div className={styles.scrollHistory}>
 
-                  
+
                     {
                       user.account != null ? (
                         user.account.fromTransactions != null ? (
-                          user.account.fromTransactions.map((item: any) => (
+                          user.account.fromTransactions.slice().reverse().map((item: any) => (// >>>>>>>>>>>>> new to old
                             <div>
                               <TransactionHistoryCardComponent
                                 type="sent"
@@ -123,7 +123,7 @@ const Overview = () => {
                     {
                       user.account != null ? (
                         user.account.toTransactions != null ? (
-                          user.account.toTransactions.map((item: any) => (
+                          user.account.toTransactions.slice().reverse().map((item: any) => (
                             <div>
                               <TransactionHistoryCardComponent
                                 type="received"

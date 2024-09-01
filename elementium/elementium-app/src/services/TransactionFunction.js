@@ -28,9 +28,10 @@ export const transactionFunction = async (fromUserAccount, toUserAccount, amount
             let toUserData = await toUserResponse.json();
             toUserData = toUserData[0];
 
+
             let updatedFromUserData = { ...fromUserData };
 
-            updatedFromUserData[currency] = parseInt(fromUserData[currency]) - parseInt(amount);
+            updatedFromUserData[currency] = parseInt(fromUserData[currency]) - parseInt(amount + fromUserData.status.transaction_fee);
 
             const putFromUserResponse = await fetch(`http://localhost:5138/api/Account/${fromUserAccountId}`, {
                 method: "PUT",
@@ -68,7 +69,7 @@ export const transactionFunction = async (fromUserAccount, toUserAccount, amount
             const transactionData = {
                 transactionId: 0, 
                 transactionType:currency,
-                amount: parseInt(amount),
+                amount: parseInt(amount + fromUserData.status.transaction_fee),
                 timestamp: new Date().toISOString(),
                 fromAccountId: fromUserAccountId,
                 toAccountId: toUserAccountId

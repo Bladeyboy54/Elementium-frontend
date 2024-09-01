@@ -117,7 +117,7 @@ export const Transactions = () => {
                 {
                   user.account != null ? (
                     user.account.fromTransactions != null ? (
-                      user.account.fromTransactions.map((item: any) => (
+                      user.account.fromTransactions.slice().reverse().map((item: any) => (
                         <div className="">
                           <TransHistoryCardComponent
                             type="sent"
@@ -137,7 +137,7 @@ export const Transactions = () => {
                 {
                   user.account != null ? (
                     user.account.toTransactions != null ? (
-                      user.account.toTransactions.map((item: any) => (
+                      user.account.toTransactions.slice().reverse().map((item: any) => (
                         <div className="">
                           <TransHistoryCardComponent
                             type="transfer"
