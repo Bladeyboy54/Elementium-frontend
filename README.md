@@ -18,7 +18,7 @@
     <a href="https://github.com/Bladeyboy54/Elementium-frontend/tree/main/elementium"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="demo Video link">View Demo</a>
+    <a href="https://youtu.be/wReA7wE_UPY">View Demo</a>
     ·
     <a href="bug report link">Report Bug</a>
     ·
