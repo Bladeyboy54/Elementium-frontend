@@ -52,11 +52,9 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contributors">Contributors</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    
   </ol>
 </details>
 
@@ -177,6 +175,56 @@ In the front end
   ```
 
    
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Usage
+
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Contributors
+
+<div style="display: flex; flex-direction: row ; justify-content: space-between;">
+  <div style="text-align: center;">
+    <a href="https://github.com/eddiesosera/Elementium-frontend">
+      <img src="https://github.com/eddiesosera.png" alt="eddie Sosera" width="100px">
+    </a>
+    <br>
+    <sub>Eddie Sosera</sub>
+  </div>
+  
+  <div style="text-align: center;">
+    <a href="https://github.com/CWKrahtz/Elementium-frontend">
+      <img src="https://github.com/CWKrahtz.png" alt="Christian Krahtz" width="100px">
+    </a>
+    <br>
+    <sub>Christian Krahtz</sub>
+  </div>
+  
+  <div style="text-align: center;">
+    <a href="https://github.com/GodwinCameron/Elementium-frontend">
+      <img src="https://github.com/GodwinCameron.png" alt="Cameron Godwin" width="100px">
+    </a>
+    <br>
+    <sub>Cameron Godwin</sub>
+  </div>
+  
+  <div style="text-align: center;">
+    <a href="https://github.com/BladeyBoy54/Elementium-frontend">
+      <img src="https://github.com/BladeyBoy54.png" alt="Bladen Lehnberg" width="100px">
+    </a>
+    <br>
+    <sub>Bladen Lehnberg</sub>
+  </div>
+</div>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Licence
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
