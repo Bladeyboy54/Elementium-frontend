@@ -18,8 +18,8 @@ const WalletComponent = () => {
   const [loading, setLoading] = useState(true);
   const [accountData, setAccountData] = useState<any>(null);
 
-  //demo userid to plug into the gerwalllet function
-  let userId = 1;
+
+  const [isActive, setIsActive] = useState(false);
 
   const { userLoggedIn } = useAuth();
 
@@ -31,6 +31,9 @@ const WalletComponent = () => {
 
     fetchAccountData(userLoggedIn).then((data) => {
       setAccountData(data);
+      console.log("ACCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc")
+      setIsActive(data.active)
+
     });
   }, [userLoggedIn, GetWallet, fetchAccountData]);
 
@@ -45,8 +48,6 @@ const WalletComponent = () => {
       setAccountData(data);
     });
   };
-
-  console.log("Account data In WalletComp == ", accountData);
 
   const levelAccount = () => {
     levelUpAccount(userLoggedIn).then(() => {
@@ -216,9 +217,11 @@ const WalletComponent = () => {
                 )}
                 {wallet.balance_xe <= 0 ? (
                   <p>
-                    Not seeing an Element ur looking for? Either you're out of
-                    that element, or you need to upgrade to gain access to more
-                    elements.
+                    Head over to the{" "}
+                    <NavLink to={"/market"}>
+                      <span>market place</span>
+                    </NavLink>
+                    to purchase or trade for more elements
                   </p>
                 ) : null}
                 {accountData && (
