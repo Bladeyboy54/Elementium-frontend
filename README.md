@@ -51,7 +51,7 @@
         </li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#features">Features</a></li>
     <li><a href="#contributors">Contributors</a></li>
     <li><a href="#license">License</a></li>
     
@@ -177,10 +177,27 @@ In the front end
    
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Usage
+## Features
+#### 1. Authentication & Security
+- User Authentication: Secure login and registration process to safeguard user data.
+- Password Hashing: All user passwords are hashed for enhanced security, ensuring that sensitive information remains protected.
+- OTP Verification: One-Time Pin (OTP) verification is implemented to add an extra layer of security during the registration and login processes.
+#### 2. Role-Based Routing
+- User Dashboard: Access to personalized features and functionalities based on user roles.
+- Admin Panel: Admins have exclusive access to management features, including user monitoring and system settings.
+#### 3. Account Management
+- Account Upgrades: Users have the option to upgrade their account tier (Reactive, Alkali, Transition, Noble) to unlock additional features and perks.
+- Balance Overview: Real-time viewing of current balances and transaction history.
+- Perks System: Each account tier offers unique perks that enhance the user experience, such as lower transaction fees, exclusive elements, and more.
+#### 4. Payment Portal
+- Peer-to-Peer Payments: Users can seamlessly transfer funds to other Elementium users within the app.
+- Currency Purchase: Purchase additional currency as elements directly through the portal, tied to the user’s current account tier.
+#### 5. Admin Controls & Monitoring
+- Transaction Monitoring: Admins have the ability to view all user transactions, providing oversight and ensuring the integrity of the platform.
+- User Management: Admins can disable or suspend user accounts if necessary, maintaining the security and compliance of the system.
 
-
-
+### Entity Relationship Diagram
+ ![erd][ERD1]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributors
@@ -193,7 +210,7 @@ In the front end
     <br>
     <sub>Eddie Sosera</sub>
   </div>
-  
+  <br/>
   <div style="text-align: center;">
     <a href="https://github.com/CWKrahtz/Elementium-frontend">
       <img src="https://github.com/CWKrahtz.png" alt="Christian Krahtz" width="100px">
@@ -201,7 +218,7 @@ In the front end
     <br>
     <sub>Christian Krahtz</sub>
   </div>
-  
+  <br/>
   <div style="text-align: center;">
     <a href="https://github.com/GodwinCameron/Elementium-frontend">
       <img src="https://github.com/GodwinCameron.png" alt="Cameron Godwin" width="100px">
@@ -209,7 +226,7 @@ In the front end
     <br>
     <sub>Cameron Godwin</sub>
   </div>
-  
+  <br/>
   <div style="text-align: center;">
     <a href="https://github.com/BladeyBoy54/Elementium-frontend">
       <img src="https://github.com/BladeyBoy54.png" alt="Bladen Lehnberg" width="100px">
@@ -235,3 +252,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Stars]: https://img.shields.io/github/stars/Bladeyboy54/Elementium-frontend.svg?style=for-the-badge
 [Stars-url]: https://github.com/Bladeyboy54/Elementium-frontend/stargazers
 [mockup1]: elementium/README.md-Assets/mockup1.png
+[ERD1]: elementium/README.md-Assets/ERD1.png
