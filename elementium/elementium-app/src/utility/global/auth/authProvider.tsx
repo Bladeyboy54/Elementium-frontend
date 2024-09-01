@@ -34,6 +34,7 @@ interface AuthContextType {
   setOnboardingEmail: (email: string | null) => void;
   setOnboardingName: (name: string | null) => void;
   logout: () => void;
+  freezeAccount: (userForm: any) => Promise<IFeedback>;
 }
 
 interface ILoginFormType {
@@ -73,7 +74,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const [onboardingName, setOnboardingName] = useState<string | null>("");
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [hasPermission, setHasPermission] = useState<boolean>(false);
-  const [userLoggedIn, setUserLoggedIn] = useState<User | null>({
+  const [userLoggedIn, setUserLoggedIn] = useState<User | null | any>({
     id: 1,
     userId: 1,
     email: "",
@@ -228,6 +229,49 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
+  const freezeAccount = async (userForm: any): Promise<IFeedback> => {
+    console.log(userLoggedIn);
+
+    if (userLoggedIn?.role === "admin") {
+      try {
+        const response = await axios.put(
+          url(`Account/${userLoggedIn?.account?.accountId}`),
+          userForm
+        );
+        const res: any = response?.data?.body;
+        console.log("Register response: ", response);
+
+        const feedback: IFeedback = {
+          type: 200,
+          status: "Success",
+          message: "User successfully frozen.",
+          body: res,
+        };
+        return feedback;
+      } catch (error: any) {
+        // Extract useful information from the error object
+        const errorMessage = error?.response?.data?.message || error.message;
+        console.error("Freeze account error:", errorMessage);
+
+        const feedback: IFeedback = {
+          type: error?.response?.status || 500,
+          status: "Error",
+          message: "User couldn't be frozen.",
+          body: error, // Only include the error message or relevant data
+        };
+        return feedback;
+      }
+    } else {
+      const roleFeedback: IFeedback = {
+        type: 403, // 403 Forbidden is more appropriate for privilege issues
+        status: "Error",
+        message: "You need admin privileges.",
+        body: null,
+      };
+      return roleFeedback;
+    }
+  };
+
   const logout = () => {
     // TODO: Logout logic
     setIsAuthenticated(false);
@@ -254,6 +298,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         setPermission,
         setOnboardingEmail,
         setOnboardingName,
+        freezeAccount,
       }}
     >
       {children}
