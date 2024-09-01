@@ -34,6 +34,51 @@
 
 ## Table of Content
 
+### Installation
+
+   #### Front-end Installation
+1. Clone the frontend repo
+   ```sh
+   https://github.com/Bladeyboy54/Elementium-frontend.git
+   ```
+2. Install the node modules for Electron
+   ```sh
+   cd elementium
+   ```
+   then
+   ```sh
+   npm i
+   ```
+3. Install the node modules for React 
+   ```sh
+   cd elementium-app
+   ```
+   then
+   ```sh
+   npm i
+   ```
+   
+#### Server Side Installation
+4. Clone the backend repo
+   ```URL
+   https://github.com/CWKrahtz/elementium-backend,git
+   ```
+5. header
+   ```javascript
+    text
+   ```
+6. header
+   ```javascript
+    text
+   ```
+7. header
+   ```javascript
+    text
+   ```
+8. header
+   ```javascript
+    text
+   ```
 
 
 [contributors-shield]: https://img.shields.io/github/contributors/Bladeyboy54/Elementium-frontend.svg?style=for-the-badge
