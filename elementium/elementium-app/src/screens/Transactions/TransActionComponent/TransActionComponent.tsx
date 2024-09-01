@@ -7,6 +7,7 @@ import moreIcon from "../../../assets/icons/more_horiz.svg";
 import OverlayPayCard from "../OverlayInputCard/OverlayPayCard/OverlayPayCard";
 import OverlayWithdrawCard from "../OverlayInputCard/OverlayWithdrawCard/OverlayWithdrawCard";
 import OverlayTransferCard from "../OverlayInputCard/OverlayTransferCard/OverlayTransferCard";
+import { transactionFunction } from "../../../services/TransactionFunction";
 
 const TransActionComponent = () => {
 
@@ -24,11 +25,16 @@ const TransActionComponent = () => {
         setIsOverlayPayCardVisible(false);
     };
 
-    const handleSubmitPayment = () => {
-        // add Logic for making payment here
-
-        console.log("Payment has been made ")
-    }
+    const handleSubmitPayment = (
+        userId: number,
+        recipient: number,
+        amount: number,
+        currency: string
+      ) => {
+        transactionFunction(userId, recipient, amount, currency);
+        console.log("Payment has been made ", userId);
+        handlePaymentCardClose(); // Close the overlay after submission
+      };
     // ------------------Withdraw---------------------\\
     const handleWithdrawCardOpen = () =>{
         setIsOverlayWithdrawCardVisible(true)
