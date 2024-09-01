@@ -47,7 +47,7 @@ const OverlayHolderCard = ({
                 {
                     acc != null ? (
                         fromT != null ? (
-                            fromT.map((item: any) => (
+                            fromT.slice().reverse().map((item: any) => (
                                 <div className={styles.scrollHistory}>
                                     <TransactionHistoryCardComponent 
                                         type="sent"
@@ -68,7 +68,7 @@ const OverlayHolderCard = ({
                 {
                     acc != null ? (
                         toT != null ? (
-                            toT.map((item: any) => (
+                            toT.slice().reverse().map((item: any) => (
                                 <div>
                                     <TransactionHistoryCardComponent 
                                         type="received"
