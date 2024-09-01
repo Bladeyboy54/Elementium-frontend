@@ -8,6 +8,7 @@ import { DropdownEl } from "../../../../elements/Input/Dropdown";
 import { elements } from "chart.js";
 import { useAuth } from "../../../../utility/global/auth/authProvider";
 import { topUpWalletFunction } from "../../../../services/TopUpWallet";
+import { useNavigate } from "react-router-dom";
 
 export const MarketLeftSection = () => {
   const [topUpForm, setTopUpForm] = useState<any>({
@@ -17,8 +18,11 @@ export const MarketLeftSection = () => {
 
   const { userLoggedIn } = useAuth();
 
+  const navigate = useNavigate()
+
   const handleSubmit = () => {
     topUpWalletFunction(userLoggedIn, topUpForm);
+    navigate("/wallet")
   };
 
   useEffect(() => {

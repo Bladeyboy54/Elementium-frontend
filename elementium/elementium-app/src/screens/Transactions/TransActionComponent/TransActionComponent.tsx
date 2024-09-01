@@ -8,13 +8,14 @@ import OverlayPayCard from "../OverlayInputCard/OverlayPayCard/OverlayPayCard";
 import OverlayWithdrawCard from "../OverlayInputCard/OverlayWithdrawCard/OverlayWithdrawCard";
 import OverlayTransferCard from "../OverlayInputCard/OverlayTransferCard/OverlayTransferCard";
 import { transactionFunction } from "../../../services/TransactionFunction";
+import { useNavigate } from "react-router-dom";
 
 const TransActionComponent = () => {
 
     const [isOverlayPayCardVisible, setIsOverlayPayCardVisible] = useState(false);
     const [isOverlayWithdrawCardVisible, setIsOverlayWithdrawCardVisible] = useState(false);
     const [isOverlayTransferCardVisible, setIsOverlayTransferCardVisible] = useState(false);
-
+    const navigate = useNavigate()
 
     // ------------------Payment---------------------\\
     const handlePaymentCardOpen = () => {
@@ -34,6 +35,8 @@ const TransActionComponent = () => {
         transactionFunction(userId, recipient, amount, currency);
         console.log("Payment has been made ", userId);
         handlePaymentCardClose(); // Close the overlay after submission
+        
+        navigate("/wallet")
       };
     // ------------------Withdraw---------------------\\
     const handleWithdrawCardOpen = () =>{
