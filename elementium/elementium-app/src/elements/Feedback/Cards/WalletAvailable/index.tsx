@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Tilt from "react-parallax-tilt";
 import WalletLogo from "../../../../assets/logo-black.svg";
 import { TbArrowRight } from "react-icons/tb";
+import { useAuth } from "../../../../utility/global/auth/authProvider";
 
 interface IWalletAvailable {
   amountAvailable?: number;
@@ -13,7 +14,7 @@ interface IWalletAvailable {
 }
 
 export const WalletAvailableCard: React.FC<IWalletAvailable> = ({
-  amountAvailable = 100.0,
+  amountAvailable = 0,
   amountCurrency = "ZAR",
   accountNumber = 1234567890,
 }) => {
@@ -21,6 +22,7 @@ export const WalletAvailableCard: React.FC<IWalletAvailable> = ({
   const navigateToWallet = (): void => {
     navigate("/wallet");
   };
+  const { userLoggedIn } = useAuth();
   return (
     <Tilt
       perspective={1920}
