@@ -177,7 +177,10 @@ const WalletComponent = () => {
                             {wallet.balance_h2 > 0 ? (
                               <div className={styles.curreny}>
                                 <h5 className={styles.h2}>Hydrogen:</h5>
-                                <p className={styles.alignCurrency}>
+                                <p className={[
+                                    styles.alignCurrency,
+                                    styles.h2,
+                                  ].join(" ")}>
                                   <img
                                     className={styles.currencyIcon}
                                     src={h2Icon}
@@ -189,7 +192,10 @@ const WalletComponent = () => {
                             {wallet.balance_li > 0 ? (
                               <div className={styles.curreny}>
                                 <h5 className={styles.li}>Lithium:</h5>
-                                <p className={styles.alignCurrency}>
+                                <p className={[
+                                    styles.alignCurrency,
+                                    styles.li,
+                                  ].join(" ")}>
                                   <img
                                     className={styles.currencyIcon}
                                     src={liIcon}
@@ -201,7 +207,10 @@ const WalletComponent = () => {
                             {wallet.balance_pd > 0 ? (
                               <div className={styles.curreny}>
                                 <h5 className={styles.pd}>Palladium:</h5>
-                                <p className={styles.alignCurrency}>
+                                <p className={[
+                                    styles.alignCurrency,
+                                    styles.pd,
+                                  ].join(" ")}>
                                   <img
                                     className={styles.currencyIcon}
                                     src={pdIcon}
