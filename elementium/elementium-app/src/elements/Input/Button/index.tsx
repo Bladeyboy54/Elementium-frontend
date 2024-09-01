@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { useState, CSSProperties, useMemo } from "react";
 import "./index.css";
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -19,7 +19,7 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   hoverBackgroundColor?: string;
   hoverTextColor?: string;
   hoverBorderColor?: string;
-  children?: React.ReactNode; // Added to accept any JSX elements
+  children?: React.ReactNode;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -44,58 +44,64 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   ...props
 }) => {
-  const defaultStyle: CSSProperties = {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    backgroundColor,
-    color: textColor,
-    fontSize: textSize,
-    fontFamily: textFont,
-    fontWeight: textWeight,
-    width,
-    height,
-    padding,
-    gap: gap,
-    border: `1px solid ${borderColor}`,
-    borderRadius,
-    textAlign: "center",
-    cursor: "pointer",
-    transition:
-      "background-color 0.25s ease, color 0.15s ease, border-color 0.15s ease",
-  };
+  const [isHovered, setIsHovered] = useState(false);
 
-  const mouseEnter = (e: any) => {
-    (e.target as HTMLDivElement).style.backgroundColor = hoverBackgroundColor;
-    (e.target as HTMLDivElement).style.color = hoverTextColor;
-    (e.target as HTMLDivElement).style.borderColor = hoverBorderColor;
-  };
-
-  const mouseLeave = (e: any) => {
-    (e.target as HTMLDivElement).style.backgroundColor = backgroundColor;
-    (e.target as HTMLDivElement).style.color = textColor;
-    (e.target as HTMLDivElement).style.borderColor = borderColor;
-  };
+  const defaultStyle = useMemo<CSSProperties>(
+    () => ({
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      alignItems: align,
+      justifyContent: justify,
+      backgroundColor: isHovered ? hoverBackgroundColor : backgroundColor,
+      color: isHovered ? hoverTextColor : textColor,
+      fontSize: textSize,
+      fontFamily: textFont,
+      fontWeight: textWeight,
+      width,
+      height,
+      padding,
+      gap: gap,
+      border: `1px solid ${isHovered ? hoverBorderColor : borderColor}`,
+      borderRadius,
+      textAlign: "center",
+      cursor: "pointer",
+      transition:
+        "background-color 0.25s ease, color 0.15s ease, border-color 0.15s ease",
+    }),
+    [
+      align,
+      justify,
+      isHovered,
+      backgroundColor,
+      hoverBackgroundColor,
+      textColor,
+      hoverTextColor,
+      borderColor,
+      hoverBorderColor,
+      textSize,
+      textFont,
+      textWeight,
+      width,
+      height,
+      padding,
+      gap,
+      borderRadius,
+    ]
+  );
 
   return (
     <div
-      style={{
-        ...defaultStyle,
-        ...style,
-        justifyContent: justify,
-        alignItems: align,
-      }}
-      onMouseEnter={mouseEnter}
-      onMouseLeave={mouseLeave}
+      style={{ ...defaultStyle, ...style }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       {...props}
     >
       {children}
       {label && (
         <div
           className="btn-text"
-          style={{ marginLeft: children ? "0px" : "0", background: "" }}
+          style={{ marginLeft: children ? "0px" : "0" }}
         >
           {label}
         </div>

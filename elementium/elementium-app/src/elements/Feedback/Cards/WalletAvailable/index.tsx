@@ -44,10 +44,10 @@ export const WalletAvailableCard: React.FC<IWalletAvailable> = ({
             </div>
           </div>
           <div className="wallet-available-left-acc">
-            <div className="wallet-available-left-acc-label">
-              Account number
+            <div className="wallet-available-left-acc-label">Account</div>
+            <div className="wallet-available-left-acc-number">
+              @{accountNumber}
             </div>
-            <div className="wallet-available-left-acc-number">0123456789</div>
           </div>
         </div>
         <div className="wallet-available-right">

@@ -31,6 +31,7 @@ export const MarketLeftSection = () => {
     <div className="market-left">
       <WalletAvailableCard
         amountAvailable={userLoggedIn?.account?.balance_h2}
+        accountNumber={userLoggedIn?.username}
       />
       <div className="market-left-form">
         <Form
