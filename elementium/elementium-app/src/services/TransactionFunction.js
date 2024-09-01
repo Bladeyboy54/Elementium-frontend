@@ -12,7 +12,7 @@ export const transactionFunction = async (fromUserAccount, toUserAccount, amount
         if (!fromUserResponse.ok) {
             throw new Error(`HTTP error! status: ${fromUserResponse.status}`);
         }
-        
+
 
         let fromUserData = await fromUserResponse.json();
         fromUserData = fromUserData[0];
@@ -28,9 +28,10 @@ export const transactionFunction = async (fromUserAccount, toUserAccount, amount
             let toUserData = await toUserResponse.json();
             toUserData = toUserData[0];
 
+
             let updatedFromUserData = { ...fromUserData };
 
-            updatedFromUserData[currency] = parseInt(fromUserData[currency]) - parseInt(amount);
+            updatedFromUserData[currency] = parseInt(fromUserData[currency]) - parseInt(amount + fromUserData.status.transaction_fee);
 
             const putFromUserResponse = await fetch(`http://localhost:5138/api/Account/${fromUserAccountId}`, {
                 method: "PUT",
