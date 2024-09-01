@@ -23,7 +23,7 @@ export interface NewUser extends User {
 interface AuthContextType {
   onboardingEmail: string | null;
   onboardingName: string | null;
-  userLoggedIn: User | null;
+  userLoggedIn: User | null | any;
   isAuthenticated: boolean;
   hasPermission: boolean;
   createAccount: (newUserForm: NewUser) => Promise<IFeedback>;

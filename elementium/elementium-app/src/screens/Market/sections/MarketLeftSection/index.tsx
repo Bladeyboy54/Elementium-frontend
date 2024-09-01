@@ -15,22 +15,23 @@ export const MarketLeftSection = () => {
     amount: 0,
   });
 
-  const {userLoggedIn} = useAuth();
-  
+  const { userLoggedIn } = useAuth();
 
   const handleSubmit = () => {
     topUpWalletFunction(userLoggedIn, topUpForm);
-  }
+  };
 
   useEffect(() => {
     // console.log("logged in user: ", userLoggedIn?.&#36;id);
-    
+
     console.log(topUpForm);
   }, [topUpForm]);
 
   return (
     <div className="market-left">
-      <WalletAvailableCard />
+      <WalletAvailableCard
+        amountAvailable={userLoggedIn?.account?.balance_h2}
+      />
       <div className="market-left-form">
         <Form
           heading="Purchase Currency"
@@ -42,9 +43,11 @@ export const MarketLeftSection = () => {
             gap: "80px",
           }}
         >
-          <DropdownEl onSelectOption={(e) => {
-                setTopUpForm({ ...topUpForm, currency: e.value });
-              }} />
+          <DropdownEl
+            onSelectOption={(e) => {
+              setTopUpForm({ ...topUpForm, currency: e.value });
+            }}
+          />
           <div className="market-left-form-amount">
             <InputFieldText
               onChange={(e) => {
