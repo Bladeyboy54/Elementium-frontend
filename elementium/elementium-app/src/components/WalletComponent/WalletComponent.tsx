@@ -8,6 +8,10 @@ import { Market } from "../../screens/Market";
 import { NavLink } from "react-router-dom";
 import { levelUpAccount } from "../../services/LevelUpAccount";
 import loadingGif from "../../assets/icons/loading.gif";
+import h2Icon from "../../assets/icons/h2.svg";
+import liIcon from "../../assets/icons/li.svg";
+import pdIcon from "../../assets/icons/pd.svg";
+import xeIcon from "../../assets/icons/xe.svg";
 
 const WalletComponent = () => {
   const [wallet, setWallet] = useState<any>(null);
@@ -68,6 +72,7 @@ const WalletComponent = () => {
                 Alkali Account
               </span>{" "}
               status!
+              <p>Doing so will result in the following benifits: <p>Annual Interest Rate: 1%</p> <p>But with a 20 H2 Per transaction.</p></p>
             </p>
           );
         } else {
@@ -88,6 +93,7 @@ const WalletComponent = () => {
                 Transition Account
               </span>{" "}
               status!
+              <p>Doing so will result in the following benifits: <p>Annual Interest Rate: 2%</p> <p>But with a 17.5 H2 Per transaction.</p></p>
             </p>
           );
         } else {
@@ -108,6 +114,7 @@ const WalletComponent = () => {
                 Noble Account
               </span>{" "}
               status!
+              <p>Doing so will result in the following benifits: <p>Annual Interest Rate: 3%</p> <p>But with a 12.5 H2 Per transaction.</p></p>
             </p>
           );
         } else {
@@ -148,23 +155,59 @@ const WalletComponent = () => {
                   wallet.balance_li > 0 ||
                   wallet.balance_pd > 0 ||
                   wallet.balance_xe > 0 ? (
-                    <>
+                    <div className={styles.currentInvestmentsBlock}>
                       <h2>Current Investments:</h2>
-                      <div>
+                      <div className={styles.investments}>
                         {wallet.balance_h2 > 0 ? (
-                          <p>H2: {wallet.balance_h2}</p>
+                          <div className={styles.curreny}>
+                            <h5 className={styles.h2}>Hydrogen:</h5>
+                            <p className={styles.alignCurrency}>
+                              <img
+                                className={styles.currencyIcon}
+                                src={h2Icon}
+                              />
+                              x {wallet.balance_h2.toLocaleString()}
+                            </p>
+                          </div>
                         ) : null}
                         {wallet.balance_li > 0 ? (
-                          <p>Li: {wallet.balance_li}</p>
+                          <div className={styles.curreny}>
+                            <h5 className={styles.li}>Lithium:</h5>
+                            <p className={styles.alignCurrency}>
+                              <img
+                                className={styles.currencyIcon}
+                                src={liIcon}
+                              />
+                              x {wallet.balance_li.toLocaleString()}
+                            </p>
+                          </div>
                         ) : null}
                         {wallet.balance_pd > 0 ? (
-                          <p>Pd: {wallet.balance_pd}</p>
+                          <div className={styles.curreny}>
+                            <h5 className={styles.pd}>Palladium:</h5>
+                            <p className={styles.alignCurrency}>
+                              <img
+                                className={styles.currencyIcon}
+                                src={pdIcon}
+                              />
+                              x {wallet.balance_pd.toLocaleString()}
+                            </p>
+                          </div>
                         ) : null}
                         {wallet.balance_xe > 0 ? (
-                          <p>Xe: {wallet.balance_xe}</p>
+                          <div className={styles.curreny}>
+                            <h5 className={styles.xe}>Xenon:</h5>
+                            <p className={[styles.alignCurrency, styles.xe].join(" ")}>
+                              <img
+                                className={styles.currencyIcon}
+                                src={xeIcon}
+                              />
+                              x {wallet.balance_xe.toLocaleString()}
+                            </p>
+                          </div>
                         ) : null}
                       </div>
-                    </>
+                    </div>
                   ) : (
                     <div>No Investments.</div>
                   )
@@ -182,12 +225,21 @@ const WalletComponent = () => {
                   <>
                     <h3>Account data:</h3>
                     {upgradeQualifier()}
+                    <br/>
                     <p>
                       Account type:{" "}
                       <span className={styles.coolText}>
-                        {accountData?.status.status_name}
+                        {accountData?.status.status_name || "No account"}
                       </span>
                     </p>
+                    {accountData?.status.status_name !== "Noble" ? (<>
+                    <p>Required Elements to be eligable for upgrade: <p>{accountData?.status.transactions_criteria}: {accountData?.status.total_amount_criteria}</p></p><br/>
+                    </>) : null}
+                    {accountData?.status.status_name !== "Reactive" ? (<>
+                    <p>Current benifits:</p>
+                    <p>Annual Interest Rate: {accountData?.status.annual_interest_rate * 100}%</p>
+                    </>) : null}
+                    <p>Current Fee rate: <span> {accountData?.status.transaction_fee} H2 Per transaction.</span></p>
                   </>
                 )}
               </div>

@@ -77,6 +77,53 @@
       position: relative; /* Add this for the absolute positioning of ::after */
     }
     // ===================================================================================================================
+
+    .currentInvestmentsBlock {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      border: 1px solid #b1b98e;
+      border-radius: 10px;
+      margin-top: 2vh;
+      margin-bottom: 4vh;
+      width: 50%;
+      .investments {
+        display: flex;
+        margin-top: 2vh;
+        flex-direction: row;
+        gap: 4vw;
+        .curreny {
+          display: flex;
+          flex-direction: column;
+          .alignCurrency {
+            display: flex;
+            align-items: center;
+            margin-top: 1vh;
+
+            .currencyIcon {
+              display: flex;
+              width: 2.5vw;
+              height: 2.5vw;
+              margin-right: 0.4vw;
+            }
+          }
+
+          .h2{
+            color: rgb(75, 246, 255);
+          }
+          .li{
+            color: rgb(246, 226, 162);
+          }
+          .pd{
+            color: #c9c9c9
+          }
+          .xe{
+            color: #ff34c9
+          }
+          
+        }
+      }
+    }
   }
 }
 

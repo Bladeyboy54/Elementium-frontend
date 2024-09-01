@@ -12,6 +12,7 @@ export const transactionFunction = async (fromUserAccount, toUserAccount, amount
         if (!fromUserResponse.ok) {
             throw new Error(`HTTP error! status: ${fromUserResponse.status}`);
         }
+        
 
         let fromUserData = await fromUserResponse.json();
         fromUserData = fromUserData[0];
